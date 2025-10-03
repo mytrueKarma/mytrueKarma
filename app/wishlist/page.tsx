@@ -13,60 +13,28 @@ import { Star, ShoppingCart, Heart, Trash2, Share2, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/contexts/cart-context";
-
-const wishlistItems = [
-  {
-    id: 1,
-    name: "mytrueKarma Herren T-Shirt",
-    price: 29.99,
-    originalPrice: 39.99,
-    image: "/mytruekarma-men-s-t-shirt.jpg",
-    rating: 4.8,
-    reviews: 124,
-    inStock: true,
-    addedDate: "2024-01-15",
-    tags: ["Bio", "Fair Trade"],
-  },
-  {
-    id: 2,
-    name: "mytrueKarma Damen T-Shirt",
-    price: 27.99,
-    originalPrice: 35.99,
-    image: "/mytruekarma-women-s-t-shirt.jpg",
-    rating: 4.9,
-    reviews: 89,
-    inStock: true,
-    addedDate: "2024-01-10",
-    tags: ["Bio", "Vegan"],
-  },
-  {
-    id: 3,
-    name: "Premium Kaffeetasse",
-    price: 19.99,
-    originalPrice: 24.99,
-    image: "/premium-coffee-mug-mytruekarma.jpg",
-    rating: 4.7,
-    reviews: 156,
-    inStock: false,
-    addedDate: "2024-01-05",
-    tags: ["Keramik", "Handgefertigt"],
-  },
-];
+import { useWishlist } from "@/contexts/wishlist-context";
+import { useToast } from "@/hooks/use-toast";
 
 export default function WishlistPage() {
   const { addToCart } = useCart();
-  const [items, setItems] = useState(wishlistItems);
+  const { wishlistItems, removeFromWishlist } = useWishlist();
+  const { toast } = useToast();
   const [removingItem, setRemovingItem] = useState<number | null>(null);
 
   const handleRemoveItem = (id: number) => {
     setRemovingItem(id);
     setTimeout(() => {
-      setItems((prev) => prev.filter((item) => item.id !== id));
+      removeFromWishlist(id);
       setRemovingItem(null);
+      toast({
+        title: "Von Wunschliste entfernt",
+        description: "Das Produkt wurde von Ihrer Wunschliste entfernt.",
+      });
     }, 300);
   };
 
-  const handleAddToCart = (item: (typeof wishlistItems)[0]) => {
+  const handleAddToCart = (item: any) => {
     if (item.inStock) {
       addToCart({
         id: item.id,
@@ -74,25 +42,40 @@ export default function WishlistPage() {
         price: item.price,
         image: item.image,
         inStock: item.inStock,
+        category: item.category,
+        provider: item.provider,
+        serviceType: item.serviceType,
+      });
+      toast({
+        title: "In den Warenkorb gelegt!",
+        description: `${item.name} wurde zu Ihrem Warenkorb hinzugefügt.`,
       });
     }
   };
 
   const handleAddAllToCart = () => {
-    items
-      .filter((item) => item.inStock)
-      .forEach((item) => {
-        addToCart({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          image: item.image,
-          inStock: item.inStock,
-        });
+    const inStockItems = wishlistItems.filter((item) => item.inStock);
+    inStockItems.forEach((item) => {
+      addToCart({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        inStock: item.inStock,
+        category: item.category,
+        provider: item.provider,
+        serviceType: item.serviceType,
       });
+    });
+    if (inStockItems.length > 0) {
+      toast({
+        title: "Alle verfügbaren Artikel hinzugefügt!",
+        description: `${inStockItems.length} Artikel wurden zu Ihrem Warenkorb hinzugefügt.`,
+      });
+    }
   };
 
-  if (items.length === 0) {
+  if (wishlistItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">
         <div className="text-center max-w-md mx-auto">
@@ -116,7 +99,8 @@ export default function WishlistPage() {
         <div>
           <h1 className="text-3xl font-bold mb-2">Meine Wunschliste</h1>
           <p className="text-muted-foreground">
-            {items.length} {items.length === 1 ? "Artikel" : "Artikel"} in Ihrer
+            {wishlistItems.length}{" "}
+            {wishlistItems.length === 1 ? "Artikel" : "Artikel"} in Ihrer
             Wunschliste
           </p>
         </div>
@@ -127,7 +111,7 @@ export default function WishlistPage() {
           </Button>
           <Button
             onClick={handleAddAllToCart}
-            disabled={!items.some((item) => item.inStock)}
+            disabled={!wishlistItems.some((item) => item.inStock)}
           >
             <ShoppingCart className="h-4 w-4 mr-2" />
             Alle verfügbaren in den Warenkorb
@@ -136,7 +120,7 @@ export default function WishlistPage() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {wishlistItems.map((item) => (
           <Card
             key={item.id}
             className={`group hover:shadow-lg transition-all duration-300 ${
@@ -174,7 +158,7 @@ export default function WishlistPage() {
                     </Link>
                   </Button>
                 </div>
-                {item.originalPrice > item.price && (
+                {item.originalPrice && item.originalPrice > item.price && (
                   <Badge className="absolute top-2 left-2 bg-red-500">
                     -
                     {Math.round(
@@ -195,46 +179,51 @@ export default function WishlistPage() {
             </CardHeader>
             <CardContent className="p-4">
               <div className="flex flex-wrap gap-1 mb-2">
-                {item.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
+                {item.tags &&
+                  item.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
               </div>
               <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
                 {item.name}
               </h3>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-4 w-4 ${
-                        i < Math.floor(item.rating)
-                          ? "text-yellow-400 fill-current"
-                          : "text-gray-300"
-                      }`}
-                    />
-                  ))}
+              {item.rating && (
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-4 w-4 ${
+                          i < Math.floor(item.rating)
+                            ? "text-yellow-400 fill-current"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-muted-foreground">
+                    ({item.reviews || 0})
+                  </span>
                 </div>
-                <span className="text-sm text-muted-foreground">
-                  ({item.reviews})
-                </span>
-              </div>
+              )}
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-2xl font-bold text-green-600">
                   €{item.price}
                 </span>
-                {item.originalPrice > item.price && (
+                {item.originalPrice && item.originalPrice > item.price && (
                   <span className="text-sm text-muted-foreground line-through">
                     €{item.originalPrice}
                   </span>
                 )}
               </div>
-              <p className="text-xs text-muted-foreground">
-                Hinzugefügt am{" "}
-                {new Date(item.addedDate).toLocaleDateString("de-DE")}
-              </p>
+              {item.addedDate && (
+                <p className="text-xs text-muted-foreground">
+                  Hinzugefügt am{" "}
+                  {new Date(item.addedDate).toLocaleDateString("de-DE")}
+                </p>
+              )}
             </CardContent>
             <CardFooter className="p-4 pt-0 flex gap-2">
               <Button

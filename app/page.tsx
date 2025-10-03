@@ -122,10 +122,21 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-600 via-blue-600 to-teal-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <section className="relative min-h-screen text-white overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/KarmaMockup.png"
+            alt="mytrueKarma Social Commerce Platform Background"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10 min-h-screen flex items-center">
+          <div className="w-full max-w-4xl mx-auto">
             <div
               className={`space-y-6 transform transition-all duration-1000 ${
                 isVisible
@@ -134,19 +145,22 @@ export default function HomePage() {
               }`}
             >
               <div className="flex items-center gap-2 mb-4"></div>
-              <h1 className="text-3xl md:text-3xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent inline-flex items-center gap-2">
+              <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent flex items-center gap-2 flex-wrap">
                   <HandHeart className="h-6 w-6 text-yellow-300 animate-pulse" />{" "}
-                  mytrueKarma klingt zwar Englisch ...
+                  <span className="break-words">
+                    <strong>mytrueKarma</strong> klingt zwar Englisch ...
+                  </span>
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl opacity-90">
+              <p className="text-xl md:text-2xl opacity-90 text-white drop-shadow-lg">
                 ... aber wir sind ein stolzes deutsches Unternehmen, das sich
-                für positive Veränderungen einsetzt. Wir veröffentlichen jede
-                Transaktion auf unserer Website & spenden 50% aller Einnahmen
+                für positive Veränderungen einsetzt. Wir{" "}
+                <strong>veröffentlichen</strong> jede Transaktion auf unserer
+                Website & spenden <strong>50%</strong> aller Einnahmen
                 transparent an soziale Organisationen.
               </p>
-              <p className="text-lg opacity-80">
+              <p className="text-lg opacity-90 text-white drop-shadow-lg">
                 Schauen Sie sich also unsere Produkte an & kaufen Sie sozial ein
                 oder schauen Sie sich unsere Projekte an!
               </p>
@@ -165,26 +179,11 @@ export default function HomePage() {
                   size="lg"
                   variant="outline"
                   className="text-white border-white/50 hover:bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-200 bg-transparent"
+                  asChild
                 >
-                  Projekte Ansehen
+                  <Link href="/transparency">Projekte Ansehen</Link>
                 </Button>
               </div>
-            </div>
-            <div
-              className={`relative transform transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "translate-x-0 opacity-100"
-                  : "translate-x-10 opacity-0"
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg blur-2xl opacity-30 animate-pulse"></div>
-              <Image
-                src="/mockup.png"
-                alt="Sozialer Handel Einkaufen"
-                width={400}
-                height={400}
-                className="rounded-lg shadow-2xl relative z-10 hover:scale-105 transition-transform duration-300"
-              />
             </div>
           </div>
         </div>
@@ -247,39 +246,45 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((category, index) => (
-            <Card
+            <Link
               key={category.name}
-              className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
-                hoveredCategory === index
-                  ? "shadow-xl ring-2 ring-green-200"
-                  : ""
-              } ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-10 opacity-0"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredCategory(index)}
-              onMouseLeave={() => setHoveredCategory(null)}
+              href={`/products?category=${encodeURIComponent(
+                category.name.toLowerCase().replace(/\s+/g, "-")
+              )}`}
             >
-              <CardContent className="p-4 text-center">
-                <div className="relative overflow-hidden rounded-lg mb-3">
-                  <Image
-                    src={category.image || "/placeholder.svg"}
-                    alt={category.name}
-                    width={100}
-                    height={100}
-                    className={`mx-auto transition-transform duration-300 ${
-                      hoveredCategory === index ? "scale-110" : "scale-100"
-                    }`}
-                  />
-                </div>
-                <h3 className="font-semibold">{category.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {category.count} Artikel
-                </p>
-              </CardContent>
-            </Card>
+              <Card
+                className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
+                  hoveredCategory === index
+                    ? "shadow-xl ring-2 ring-green-200"
+                    : ""
+                } ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+                onMouseEnter={() => setHoveredCategory(index)}
+                onMouseLeave={() => setHoveredCategory(null)}
+              >
+                <CardContent className="p-4 text-center">
+                  <div className="relative overflow-hidden rounded-lg mb-3">
+                    <Image
+                      src={category.image || "/placeholder.svg"}
+                      alt={category.name}
+                      width={100}
+                      height={100}
+                      className={`mx-auto transition-transform duration-300 ${
+                        hoveredCategory === index ? "scale-110" : "scale-100"
+                      }`}
+                    />
+                  </div>
+                  <h3 className="font-semibold">{category.name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {category.count} Artikel
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
@@ -533,40 +538,51 @@ export default function HomePage() {
       {/* About Section */}
       <section className="bg-muted">
         <div className="container mx-auto px-4 py-16">
-          <div className="text-center mb-12">
-            <Image
-              src="/myk-logo.png"
-              alt="mytrueKarma Logo"
-              width={100}
-              height={100}
-              className="mx-auto mb-6"
-            />
-            <h2 className="text-3xl font-bold mb-4">Warum mytrueKarma?</h2>
-          </div>
+          <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+            {/* Left Side - Title */}
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <div className="mb-8">
+                <Image
+                  src="/myk-logo.png"
+                  alt="mytrueKarma Logo"
+                  width={120}
+                  height={120}
+                  className="mx-auto lg:mx-0"
+                />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                Warum gerade mytrueKarma?
+              </h2>
+            </div>
 
-          <div className="max-w-4xl mx-auto space-y-6 text-lg text-muted-foreground">
-            <p>
-              Bei mytrueKarma fließen 50% unserer Einnahmen in soziale Projekte,
-              die dazu beitragen, die Welt zu einem besseren Ort zu machen.
-            </p>
-            <p>
-              Diese Projekte werden aktiv in unserer Community präsentiert, um
-              Transparenz und gemeinsames Engagement zu fördern. Sie können
-              durch einen Kauf auf unserer Website ganz einfach einen Beitrag
-              leisten und haben so direkten Einfluss auf die Umsetzung wichtiger
-              Initiativen.
-            </p>
-            <p>
-              Um unsere Wertschätzung für unsere Spender auszudrücken,
-              veröffentlichen wir monatlich eine Liste mit den Namen der
-              Unterstützer und ihren Beiträgen, jedoch nur mit ausdrücklicher
-              Zustimmung der Spender.
-            </p>
-            <p>
-              Wir sind stolz darauf, Teil dieser positiven Bewegung zu sein und
-              freuen uns darauf, gemeinsam mit Ihnen die Welt zu einem besseren
-              Ort zu machen.
-            </p>
+            {/* Right Side - Content */}
+            <div className="lg:w-1/2 space-y-6 text-lg text-muted-foreground">
+              <p>
+                Bei <strong>mytrueKarma</strong> fließen <u>50%</u> unserer
+                Erlöse in soziale Projekte, die dazu beitragen, die Welt zu
+                einem besseren Ort zu machen.
+              </p>
+              <p>
+                Diese Projekte werden aktiv in unserer Community vorgestellt, um
+                Transparenz und gemeinsames Engagement zu fördern. Du kannst
+                ganz einfach über unsere Webseite mit einem{" "}
+                <strong>Einkauf</strong> einen Beitrag dazu leisten und somit
+                einen direkten Einfluss auf die Umsetzung wichtiger Vorhaben
+                haben.
+              </p>
+              <p>
+                Um unsere Wertschätzung für <strong>unsere Spender</strong> zum
+                Ausdruck zu bringen, veröffentlichen wir monatlich eine Liste
+                mit den Namen der Unterstützer und ihren Beiträgen, jedoch nur
+                mit ausdrücklicher Einwilligung der Spender.
+              </p>
+              <p>
+                Wir sind stolz darauf, ein Teil dieser{" "}
+                <strong>positiven Bewegung</strong> zu sein und freuen uns
+                darauf, mit dir gemeinsam die Welt zu einem besseren Ort zu
+                machen.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -43,6 +43,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
+import { useCart } from "@/contexts/cart-context";
 
 const customerItems = [
   {
@@ -153,11 +154,14 @@ const adminItems = [
 
 export function Header() {
   const { user, logout } = useAuth();
+  const { getTotalItems } = useCart();
   const router = useRouter();
   const [searchFocused, setSearchFocused] = useState(false);
   const [cartHovered, setCartHovered] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const totalItems = getTotalItems();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -333,13 +337,15 @@ export function Header() {
                       cartHovered ? "text-blue-600 scale-110" : ""
                     }`}
                   />
-                  <Badge
-                    className={`absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs transition-all duration-200 ${
-                      cartHovered ? "scale-125 bg-blue-600" : ""
-                    }`}
-                  >
-                    3
-                  </Badge>
+                  {totalItems > 0 && (
+                    <Badge
+                      className={`absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs transition-all duration-200 ${
+                        cartHovered ? "scale-125 bg-blue-600" : ""
+                      }`}
+                    >
+                      {totalItems}
+                    </Badge>
+                  )}
                 </div>
               </Link>
             </Button>

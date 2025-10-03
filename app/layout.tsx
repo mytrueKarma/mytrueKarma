@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/components/auth-provider";
 import { CartProvider } from "@/contexts/cart-context";
+import { WishlistProvider } from "@/contexts/wishlist-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +27,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <CartProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
+            <WishlistProvider>
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              <Toaster />
+            </WishlistProvider>
           </CartProvider>
         </AuthProvider>
       </body>

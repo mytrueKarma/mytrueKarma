@@ -42,11 +42,14 @@ import {
   Calendar,
   HandHeart,
   Mail,
+  ShoppingCart,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/cart-context";
+import { useWishlist } from "@/contexts/wishlist-context";
 
 // Sample data for services and jobs
 const featuredServices = [
@@ -169,6 +172,8 @@ const categories = [
 export default function ServicesPage() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [activeTab, setActiveTab] = useState<"services" | "jobs">("services");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Alle");
@@ -292,6 +297,69 @@ export default function ServicesPage() {
       handleCreateService();
     } else {
       handleCreateJob();
+    }
+  };
+
+  const handleAddServiceToCart = (
+    e: React.MouseEvent,
+    service: (typeof featuredServices)[0]
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Convert service to cart item format
+    const serviceCartItem = {
+      id: service.id,
+      name: service.title,
+      price:
+        parseFloat(service.price.replace(/[^\d,]/g, "").replace(",", ".")) || 0, // Extract price from "ab 89€/Stunde"
+      image: service.image,
+      inStock: true,
+      category: "service",
+      provider: service.provider,
+      serviceType: service.category,
+    };
+
+    addToCart(serviceCartItem);
+
+    toast({
+      title: "Service in den Warenkorb gelegt!",
+      description: `${service.title} wurde zu Ihrem Warenkorb hinzugefügt.`,
+    });
+  };
+
+  const handleToggleWishlist = (
+    e: React.MouseEvent,
+    service: (typeof featuredServices)[0]
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Convert service to wishlist item format
+    const serviceWishlistItem = {
+      id: service.id,
+      name: service.title,
+      price:
+        parseFloat(service.price.replace(/[^\d,]/g, "").replace(",", ".")) || 0,
+      image: service.image,
+      inStock: true,
+      category: "service",
+      provider: service.provider,
+      serviceType: service.category,
+    };
+
+    if (isInWishlist(service.id)) {
+      removeFromWishlist(service.id);
+      toast({
+        title: "Von Wunschliste entfernt",
+        description: `${service.title} wurde von Ihrer Wunschliste entfernt.`,
+      });
+    } else {
+      addToWishlist(serviceWishlistItem);
+      toast({
+        title: "Zur Wunschliste hinzugefügt!",
+        description: `${service.title} wurde zu Ihrer Wunschliste hinzugefügt.`,
+      });
     }
   };
 
@@ -812,11 +880,28 @@ export default function ServicesPage() {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <div className="flex gap-2 w-full">
-                    <Button className="flex-1 bg-green-600 hover:bg-green-700">
-                      Kontaktieren
+                    <Button
+                      className="flex-1 bg-blue-600 hover:bg-blue-700"
+                      onClick={(e) => handleAddServiceToCart(e, service)}
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      In den Warenkorb
                     </Button>
-                    <Button variant="outline" size="icon">
-                      <Heart className="h-4 w-4" />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={(e) => handleToggleWishlist(e, service)}
+                      className={
+                        isInWishlist(service.id)
+                          ? "text-red-500 border-red-500"
+                          : ""
+                      }
+                    >
+                      <Heart
+                        className={`h-4 w-4 ${
+                          isInWishlist(service.id) ? "fill-red-500" : ""
+                        }`}
+                      />
                     </Button>
                   </div>
                 </CardFooter>

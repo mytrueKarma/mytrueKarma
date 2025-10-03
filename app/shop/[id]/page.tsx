@@ -562,11 +562,19 @@ export default function ProductDetailPage() {
       {/* Product Details Tabs */}
       <div className="mt-16">
         <Tabs defaultValue="description" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="description">Beschreibung</TabsTrigger>
-            <TabsTrigger value="features">Eigenschaften</TabsTrigger>
-            <TabsTrigger value="specifications">Spezifikationen</TabsTrigger>
-            <TabsTrigger value="reviews">Bewertungen</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1">
+            <TabsTrigger value="description" className="text-xs md:text-sm">
+              Beschreibung
+            </TabsTrigger>
+            <TabsTrigger value="features" className="text-xs md:text-sm">
+              Eigenschaften
+            </TabsTrigger>
+            <TabsTrigger value="specifications" className="text-xs md:text-sm">
+              Spezifikationen
+            </TabsTrigger>
+            <TabsTrigger value="reviews" className="text-xs md:text-sm">
+              Bewertungen
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="description" className="mt-6">

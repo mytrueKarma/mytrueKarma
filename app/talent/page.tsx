@@ -137,21 +137,87 @@ const faqItems = [
 export default function TalentPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  const words = ["Künstler", "Talente", "Kreative", "Gestalter", "Designer"];
 
   useEffect(() => {
     setIsVisible(true);
-  }, []);
 
+    // Animation für wechselnde Wörter
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 2000); // Wechselt alle 2 Sekunden
+
+    return () => clearInterval(interval);
+  }, [words.length]);
   return (
     <div className="space-y-12">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+      {/* Hero Section with Gradient Wave Background */}
+      <section className="relative text-white overflow-hidden min-h-screen flex items-center">
+        <style jsx global>{`
+          .gradient-wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("https://github.com/supahfunk/gradientwaves-svg/blob/master/dist/img/bg-gradient-wave.png?raw=true")
+              repeat center / cover;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+          }
+
+          .gradient-wave-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+              135deg,
+              rgba(147, 51, 234, 0.8),
+              rgba(236, 72, 153, 0.8),
+              rgba(251, 146, 60, 0.8)
+            );
+            z-index: 1;
+          }
+
+          .hero-content {
+            position: relative;
+            z-index: 10;
+          }
+
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}</style>
+
+        <div className="gradient-wave-bg"></div>
+
+        <div className="container mx-auto px-4 py-16 md:py-24 hero-content">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                Unsere Nachwuchs-Gestalter
+                Unsere Nachwuchs-
+                <span
+                  key={currentWordIndex}
+                  className="inline-block transition-all duration-500 ease-in-out transform bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent"
+                  style={{
+                    animation: "fadeInUp 0.5s ease-in-out",
+                  }}
+                >
+                  {words[currentWordIndex]}
+                </span>
               </span>
             </h1>
             <p className="text-xl md:text-2xl opacity-90 mb-8">
