@@ -210,8 +210,8 @@ export default function AboutPage() {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl opacity-90 mb-8">
-                  Wir sind eine Modemarke mit einem einzigartigen Ansatz. Denn
-                  wir sind mehr als nur ein Label – wir sind eine Bewegung, die
+                  Wir sind eine Modemarke mit einem einzigartigen Ansatz.  <br />Denn
+                  wir sind mehr als nur ein Label – wir sind eine Bewegung,  <br />die
                   die Welt der Mode neu definiert.
                 </p>
                 <p className="text-lg opacity-80">
@@ -310,14 +310,14 @@ export default function AboutPage() {
                   <Card className="relative p-8 md:p-12 border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700 font-medium">
                       mytrueKarma strebt danach, nicht nur modische Statements
-                      zu setzen, sondern auch einen
+                      zu setzen,  <br />sondern auch einen
                       <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
                         {" "}
                         positiven Einfluss auf die Welt{" "}
                       </span>
                       auszuüben. 
-                      <li> Unser Konzept geht über den bloßen Verkauf von
-                      Produkten hinaus.</li>
+                       <br /> Unser Konzept geht über den bloßen Verkauf von
+                      Produkten hinaus.
                     </p>
                   </Card>
                 </div>
@@ -356,7 +356,7 @@ export default function AboutPage() {
                             50%-Spendenmodell
                           </span>
                           . Die Hälfte unserer Erlöse fließt in wohltätige
-                          Projekte, und jeder Kauf wird zu einer guten Tat. Wir
+                          Projekte, und jeder Kauf wird zu einer guten Tat.  <br />Wir
                           sind stolz darauf eine Kraft für positive
                           Veränderungen in der Welt zu sein.
                         </p>
@@ -397,7 +397,7 @@ export default function AboutPage() {
                             {" "}
                             Handelsplattform
                           </span>{" "}
-                          zu entwickeln. Dabei sollen nicht nur Produkte
+                          zu entwickeln.  <br />Dabei sollen nicht nur Produkte
                           verkauft, sondern auch transparente Mechanismen für
                           soziales Engagement etabliert werden.
                         </p>
@@ -419,8 +419,8 @@ export default function AboutPage() {
                     </div>
                     <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                       Begleite uns auf unserer Reise, denn bei mytrueKarma geht
-                      es nicht nur um Mode, sondern um einen nachhaltigen und
-                      positiven Einfluss, den wir gemeinsam gestalten können.
+                      es nicht nur um Mode,  <br />sondern um einen nachhaltigen und
+                      positiven Einfluss, <br />den wir gemeinsam gestalten können.
                     </p>
                   </Card>
                 </div>

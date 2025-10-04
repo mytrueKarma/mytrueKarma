@@ -155,9 +155,10 @@ export default function HomePage() {
               </h1>
               <p className="text-xl md:text-2xl opacity-90 text-white drop-shadow-lg">
                 ... aber wir sind ein stolzes deutsches Unternehmen, das sich
-                für positive Veränderungen einsetzt. Wir{" "}
-                <strong>veröffentlichen</strong> jede Transaktion auf unserer
-                Website & spenden <strong>50%</strong> aller Einnahmen
+                für positive Veränderungen einsetzt.
+                <br />
+                Wir <strong>veröffentlichen</strong> jede Transaktion auf
+                unserer Website & spenden <strong>50%</strong> aller Einnahmen
                 transparent an soziale Organisationen.
               </p>
               <p className="text-lg opacity-90 text-white drop-shadow-lg">

@@ -469,17 +469,17 @@ export default function TransparencyPage() {
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <Image
-                  src="/blog-transparency-social-projects.jpg"
+                  src="/social-commerce-transparent-shopping-community.jpg"
                   alt="Transparenz in sozialen Projekten"
                   width={400}
                   height={200}
-                  className="rounded-lg mb-4"
+                  className="rounded-lg mb-4 w-full h-48 object-cover"
                 />
                 <CardTitle className="text-lg">
                   Die Bedeutung von Transparenz in sozialen Projekten: Vertrauen
                   schaffen und Wirkung erhöhen
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">Februar 9, 2024</p>
+                <p className="text-sm text-muted-foreground">März 15, 2024</p>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
@@ -499,11 +499,11 @@ export default function TransparencyPage() {
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <Image
-                  src="/blog-mykarma-to-mytruekarma.jpg"
+                  src="/mytruekarma-logo-social.jpg"
                   alt="myKarma goes mytrueKarma"
                   width={400}
                   height={200}
-                  className="rounded-lg mb-4"
+                  className="rounded-lg mb-4 w-full h-48 object-cover"
                 />
                 <CardTitle className="text-lg">
                   myKarma goes mytrueKarma

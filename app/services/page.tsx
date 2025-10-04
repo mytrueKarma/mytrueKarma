@@ -50,6 +50,7 @@ import { useAuth } from "@/components/auth-provider";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/cart-context";
 import { useWishlist } from "@/contexts/wishlist-context";
+import AnimatedParticles from "@/components/animated-particles";
 
 // Sample data for services and jobs
 const featuredServices = [
@@ -383,6 +384,10 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-green-600 via-blue-600 to-purple-600 text-white overflow-hidden">
+        <AnimatedParticles
+          count={80}
+          colors={["#fbfcca", "#d7f3fe", "#ffd0a7", "#ffffff", "#e6f3ff"]}
+        />
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
@@ -397,12 +402,12 @@ export default function ServicesPage() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Verbinden Sie Ihre Fähigkeiten mit sozialer Wirkung. Bieten Sie
+              Verbinden Sie Ihre Fähigkeiten mit sozialer Wirkung.  <br />Bieten Sie
               Services an oder finden Sie Jobs, die einen Unterschied machen.
             </p>
             <p className="text-lg opacity-80 mb-8">
               Jede Transaktion auf unserer Plattform trägt zu sozialen Projekten
-              bei. Arbeiten Sie nicht nur für Geld, sondern für eine bessere
+              bei.   <br /><br />Arbeiten Sie nicht nur für Geld,  <br />sondern für eine bessere
               Welt.
             </p>
 
@@ -993,8 +998,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-r from-green-600 to-blue-600 text-white py-16 overflow-hidden">
+        <AnimatedParticles
+          count={60}
+          colors={["#fbfcca", "#d7f3fe", "#ffd0a7", "#ffffff", "#e6f3ff"]}
+        />
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold mb-2">500+</div>
@@ -1298,8 +1308,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Seller CTA Section */}
-      <section className="bg-gradient-to-br from-green-600 to-teal-600 text-white py-16">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-br from-green-600 to-teal-600 text-white py-16 overflow-hidden">
+        <AnimatedParticles
+          count={70}
+          colors={["#fbfcca", "#d7f3fe", "#ffd0a7", "#ffffff", "#e6f3ff"]}
+        />
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <HandHeart className="h-12 w-12 text-yellow-300 animate-pulse" />

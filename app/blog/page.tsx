@@ -51,11 +51,319 @@ Bei mytrueKarma glauben wir fest an die Kraft der Transparenz. Deshalb teilen wi
 
 Transparenz ist nicht nur ein Nice-to-have, sondern eine Notwendigkeit für nachhaltige soziale Wirkung. Sie ermöglicht es Spendern, informierte Entscheidungen zu treffen, und hilft Organisationen dabei, das Vertrauen zu verdienen, das sie für ihre wichtige Arbeit benötigen.`,
     author: "mytrueKarma Team",
-    date: "2024-02-09",
+    date: "2024-03-15",
     readTime: "5 min",
-    image: "/mockup1.jpg",
+    image: "/social-commerce-transparent-shopping-community.jpg",
     tags: ["Transparenz", "Soziale Projekte", "Vertrauen", "NGO"],
     category: "Transparenz",
+  },
+  {
+    slug: "nachhaltige-mode-fair-trade",
+    title:
+      "Nachhaltige Mode & Fair Trade: Wie Verbraucher positive Veränderungen bewirken können",
+    excerpt:
+      "Die Modeindustrie steht vor einem Wandel. Erfahren Sie, wie bewusste Kaufentscheidungen einen echten Unterschied machen können und warum Fair Trade mehr als nur ein Trend ist.",
+    content: `Die Modeindustrie ist einer der größten Umweltverschmutzer weltweit. Doch es gibt Hoffnung: Durch bewusste Entscheidungen können Verbraucher positive Veränderungen bewirken.
+
+## Die Herausforderungen der Fast Fashion
+
+### Umweltauswirkungen
+- Wasserverschmutzung durch chemische Färbeprozesse
+- Enorme Mengen an Textilabfällen
+- Hoher CO2-Fußabdruck durch globale Lieferketten
+
+### Soziale Probleme
+- Niedrige Löhne in Produktionsländern
+- Schlechte Arbeitsbedingungen
+- Kinderarbeit in einigen Regionen
+
+## Was ist Fair Trade Mode?
+
+Fair Trade Mode garantiert:
+- **Faire Löhne** für alle Arbeiter in der Lieferkette
+- **Sichere Arbeitsbedingungen** und Schutz der Arbeiterrechte
+- **Umweltfreundliche Produktion** mit nachhaltigen Materialien
+- **Transparenz** in der gesamten Lieferkette
+
+## Wie Sie den Wandel unterstützen können
+
+### Bewusst einkaufen
+- Qualität über Quantität wählen
+- Nach Zertifizierungen wie GOTS oder Fair Trade suchen
+- Lokale und nachhaltige Marken unterstützen
+
+### Kleidung länger nutzen
+- Reparieren statt wegwerfen
+- Second-Hand kaufen
+- Kleidertausch mit Freunden
+
+## mytrueKarma's Beitrag
+
+Bei mytrueKarma setzen wir auf:
+- **Nachhaltige Materialien** wie Bio-Baumwolle
+- **Faire Produktionsbedingungen**
+- **Transparente Lieferketten**
+- **50% unserer Erlöse** fließen in soziale Projekte
+
+Gemeinsam können wir die Modeindustrie zu einem Katalysator für positive Veränderungen machen!`,
+    author: "Nachhaltigkeits-Team",
+    date: "2024-02-28",
+    readTime: "7 min",
+    image: "/exclusive-social-design-merchandise.jpg",
+    tags: ["Nachhaltigkeit", "Fair Trade", "Mode", "Umwelt"],
+    category: "Nachhaltigkeit",
+  },
+  {
+    slug: "50-prozent-spendenmodell",
+    title: "Unser 50% Spendenmodell: Wie jeder Einkauf zur guten Tat wird",
+    excerpt:
+      "Entdecken Sie, wie unser einzigartiges Geschäftsmodell funktioniert und warum die Hälfte unserer Erlöse direkt an soziale Projekte fließt. Transparenz, die bewegt.",
+    content: `Bei mytrueKarma ist jeder Einkauf mehr als nur ein Kauf – er ist ein Beitrag zu einer besseren Welt. Unser 50% Spendenmodell macht das möglich.
+
+## Wie funktioniert unser Modell?
+
+### Die Grundidee
+Von jedem Euro, den Sie bei uns ausgeben, fließen 50 Cent direkt in soziale Projekte. Das ist nicht nur ein Versprechen – das ist unser Geschäftskern.
+
+### Der Weg Ihres Geldes
+1. **Sie kaufen ein Produkt** für 20€
+2. **10€ gehen direkt** in unseren Spendentopf
+3. **Bei 50€ im Topf** erfolgt eine Spende
+4. **Vollständige Transparenz** über jede Transaktion
+
+## Warum 50%?
+
+### Maximaler Impact
+Wir wollten nicht nur symbolisch spenden, sondern echten Wandel bewirken. 50% ist ein Anteil, der wirklich etwas verändert.
+
+### Nachhaltiges Modell
+Trotz der hohen Spendenquote bleibt unser Geschäft nachhaltig und kann langfristig wachsen.
+
+### Vertrauen schaffen
+Durch die hohe Spendenquote zeigen wir, dass uns soziale Wirkung wichtiger ist als maximaler Profit.
+
+## Unsere aktuellen Projekte
+
+### Eden Reforestation Projects
+- **Aufforstung in Madagaskar**
+- **67 verschiedene Baumarten**
+- **Lebensraum für 200.000+ Arten**
+
+### Ukraine-Hilfe über UNICEF
+- **Lebensmittel und Wasser**
+- **Hygieneartikel**
+- **Erste-Hilfe-Sets**
+
+## Vollständige Transparenz
+
+### Was wir veröffentlichen
+- Jeden einzelnen Kauf
+- Alle Spendentransaktionen
+- Detaillierte Projektberichte
+- Finanzielle Aufstellungen
+
+### Wo Sie es finden
+- Auf unserer Transparenz-Seite
+- In regelmäßigen Instagram-Updates
+- In unserem monatlichen Newsletter
+
+## Machen Sie mit!
+
+Jeder Kauf bei mytrueKarma ist ein Schritt in Richtung einer besseren Welt. Sie kaufen nicht nur ein Produkt – Sie investieren in positive Veränderungen.
+
+**Bereit, den Unterschied zu machen?**`,
+    author: "Gründer-Team",
+    date: "2024-01-20",
+    readTime: "6 min",
+    image: "/home-garden-social.jpg",
+    tags: ["Spendenmodell", "Transparenz", "Soziale Projekte", "Impact"],
+    category: "Unternehmen",
+  },
+  {
+    slug: "community-building-soziale-unternehmen",
+    title:
+      "Community Building: Wie soziale Unternehmen echte Gemeinschaften aufbauen",
+    excerpt:
+      "Eine starke Community ist das Herzstück jeden sozialen Unternehmens. Erfahren Sie unsere Strategien für authentisches Community Building und nachhaltiges Engagement.",
+    content: `Eine echte Community zu aufzubauen ist mehr als nur Follower zu sammeln. Es geht darum, Menschen zu verbinden, die gemeinsame Werte teilen.
+
+## Was macht eine echte Community aus?
+
+### Gemeinsame Werte
+Unsere Community teilt die Überzeugung, dass Geschäfte einen positiven Einfluss haben sollten.
+
+### Authentische Verbindungen
+Es geht nicht um Verkaufen, sondern um echte Beziehungen und gegenseitige Unterstützung.
+
+### Transparenz und Offenheit
+Wir teilen nicht nur Erfolge, sondern auch Herausforderungen und Lernprozesse.
+
+## Unsere Community-Building Strategien
+
+### 1. Regelmäßige Updates
+- **Transparenz-Posts** auf Instagram
+- **Projekt-Updates** per Newsletter
+- **Behind-the-Scenes** Einblicke
+
+### 2. Direkter Dialog
+- **Kommentare beantworten** auf allen Kanälen
+- **Community-Fragen** in Entscheidungen einbeziehen
+- **Feedback aktiv einholen** und umsetzen
+
+### 3. Wertschätzung zeigen
+- **Kunden-Features** in unseren Posts
+- **Dankessprüche** für Unterstützung
+- **Exklusive Einblicke** für treue Community-Mitglieder
+
+## Die Herausforderungen
+
+### Authentizität bewahren
+Bei wachsender Community ist es wichtig, persönlich und authentisch zu bleiben.
+
+### Konsistenz halten
+Regelmäßige Kommunikation erfordert Zeit und Ressourcen.
+
+### Verschiedene Bedürfnisse
+Eine diverse Community hat unterschiedliche Erwartungen und Interessen.
+
+## Community Impact messen
+
+### Qualitative Metriken
+- **Engagement-Qualität** statt nur Quantität
+- **Wiederkehrende Interaktionen**
+- **User-Generated Content**
+
+### Quantitative Metriken
+- **Community-Wachstum**
+- **Engagement-Raten**
+- **Conversion von Community zu Kunden**
+
+## Tipps für andere soziale Unternehmen
+
+### Startet klein
+Eine kleine, engagierte Community ist wertvoller als viele passive Follower.
+
+### Seid geduldig
+Community Building ist ein Marathon, kein Sprint.
+
+### Hört zu
+Eure Community sagt euch, was sie braucht – ihr müsst nur zuhören.
+
+### Bleibt authentisch
+Fake it till you make it funktioniert nicht bei Community Building.
+
+Unsere Community ist unser größter Schatz. Ohne sie wäre mytrueKarma nur ein weiterer Online-Shop. Mit ihr sind wir eine Bewegung für positive Veränderungen!`,
+    author: "Community-Team",
+    date: "2023-12-18",
+    readTime: "8 min",
+    image: "/travel-accessories-social.jpg",
+    tags: ["Community", "Social Media", "Engagement", "Authentizität"],
+    category: "Community",
+  },
+  {
+    slug: "zukunft-social-commerce-2024",
+    title: "Die Zukunft des Social Commerce: Trends und Perspektiven für 2024",
+    excerpt:
+      "Social Commerce revolutioniert die Art, wie wir einkaufen. Entdecken Sie die wichtigsten Trends und was sie für Verbraucher und Unternehmen bedeuten.",
+    content: `Social Commerce ist mehr als nur ein Trend – es ist die Zukunft des Einzelhandels. Hier sind die wichtigsten Entwicklungen für 2024.
+
+## Was ist Social Commerce?
+
+Social Commerce verbindet soziale Medien mit E-Commerce und ermöglicht es Nutzern, direkt in ihren Lieblings-Apps einzukaufen.
+
+### Die Evolution
+- **Phase 1**: Werbung in sozialen Medien
+- **Phase 2**: Shoppable Posts
+- **Phase 3**: Vollständige In-App-Shopping-Erlebnisse
+- **Phase 4**: KI-gestützte, personalisierte Shopping-Assistenten
+
+## Die wichtigsten Trends 2024
+
+### 1. Live-Shopping Events
+- **Interaktive Produktpräsentationen**
+- **Echtzeitfragen** und Antworten
+- **Exclusive Deals** nur für Live-Zuschauer
+
+### 2. KI-Personalisierung
+- **Individuelle Produktempfehlungen**
+- **Virtuelle Shopping-Assistenten**
+- **Predictive Shopping** basierend auf Verhalten
+
+### 3. Nachhaltigkeit im Fokus
+- **Transparente Lieferketten**
+- **CO2-Fußabdruck-Tracking**
+- **Soziale Impact-Messung**
+
+### 4. Creator Economy Integration
+- **Influencer als Verkäufer**
+- **Affiliate-Programme** für Micro-Influencer
+- **User-Generated Content** als Verkaufstool
+
+## Auswirkungen auf Verbraucher
+
+### Vorteile
+- **Nahtloses Shopping-Erlebnis**
+- **Authentische Produktbewertungen**
+- **Personalisierte Empfehlungen**
+- **Soziale Validation** durch Community
+
+### Herausforderungen
+- **Impulskäufe** durch vereinfachten Checkout
+- **Datenschutz-Bedenken**
+- **Überflutung** mit Shopping-Content
+
+## Auswirkungen auf Unternehmen
+
+### Chancen
+- **Direkter Kundenkontakt**
+- **Niedrigere Akquisitionskosten**
+- **Bessere Dateneinblicke**
+- **Community Building**
+
+### Herausforderungen
+- **Plattform-Abhängigkeit**
+- **Sich ändernde Algorithmen**
+- **Erhöhter Content-Bedarf**
+
+## mytrueKarma's Ansatz
+
+### Unsere Vision
+Wir nutzen Social Commerce nicht nur zum Verkaufen, sondern um:
+- **Bewusstsein** für soziale Themen zu schaffen
+- **Transparenz** in unseren Prozessen zu zeigen
+- **Community** rund um nachhaltige Werte aufzubauen
+
+### Konkrete Maßnahmen
+- **Instagram Shopping** mit Impact-Tracking
+- **Live Q&A Sessions** über unsere Projekte
+- **User-Generated Content** von unserer Community
+- **Influencer-Partnerschaften** mit gleichgesinnten Creatorn
+
+## Tipps für Unternehmen
+
+### 1. Authentizität first
+Nutzt Social Commerce nicht nur als Verkaufskanal, sondern als Kommunikationsplattform.
+
+### 2. Community über Sales
+Baut erst eine Community auf, der Verkauf folgt automatisch.
+
+### 3. Transparenz zeigen
+Teilt nicht nur Produkte, sondern auch eure Werte und Prozesse.
+
+### 4. Auf Veränderungen vorbereitet sein
+Social Commerce entwickelt sich schnell – bleibt flexibel!
+
+## Die Zukunft ist social
+
+Social Commerce wird den Einzelhandel fundamental verändern. Unternehmen, die jetzt anfangen, echte Communities aufzubauen, werden die Gewinner von morgen sein.
+
+Bei mytrueKarma sehen wir Social Commerce als Chance, nicht nur Produkte zu verkaufen, sondern positive Veränderungen in der Welt zu bewirken. Seid ihr bereit für die Zukunft des Shoppens?`,
+    author: "Digital-Team",
+    date: "2023-11-05",
+    readTime: "9 min",
+    image: "/accessories-bags-social.jpg",
+    tags: ["Social Commerce", "E-Commerce", "Trends", "Zukunft"],
+    category: "Technologie",
   },
   {
     slug: "mykarma-goes-mytruekarma",
@@ -95,7 +403,7 @@ Das mytrueKarma Team ❤️`,
     author: "Gründer-Team",
     date: "2022-10-14",
     readTime: "3 min",
-    image: "mockup3.jpg",
+    image: "/mockup3.jpg",
     tags: ["Rebranding", "Geschichte", "Mission", "mytrueKarma"],
     category: "Unternehmen",
   },
@@ -107,6 +415,8 @@ const categories = [
   "Unternehmen",
   "Nachhaltigkeit",
   "Projekte",
+  "Community",
+  "Technologie",
 ];
 
 export default function BlogPage() {
