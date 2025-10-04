@@ -168,31 +168,31 @@ export function Footer() {
             <h3 className="font-semibold text-white text-lg">Informationen</h3>
             <div className="space-y-2 text-sm">
               <Link
-                href="/privacy"
+                href="/datenschutz"
                 className="block hover:text-blue-400 transition-colors"
               >
                 Datenschutz
               </Link>
               <Link
-                href="/returns"
+                href="/widerruf"
                 className="block hover:text-blue-400 transition-colors"
               >
                 Widerrufsrecht
               </Link>
               <Link
-                href="/imprint"
+                href="/impressum"
                 className="block hover:text-blue-400 transition-colors"
               >
                 Impressum
               </Link>
               <Link
-                href="/terms"
+                href="/agb"
                 className="block hover:text-blue-400 transition-colors"
               >
                 AGB
               </Link>
               <Link
-                href="/contact"
+                href="/kontakt"
                 className="block hover:text-blue-400 transition-colors"
               >
                 Kontakt
