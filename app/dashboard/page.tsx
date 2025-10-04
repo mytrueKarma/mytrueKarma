@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
+import { getDisplayName } from "@/lib/user-utils";
 
 const recentOrders = [
   {
@@ -90,7 +91,7 @@ export default function DashboardPage() {
       {/* Welcome Section */}
       <div>
         <h1 className="text-3xl font-bold mb-2">
-          Welcome back, {user.firstName}!
+          Welcome back, {getDisplayName(user)}!
         </h1>
         <p className="text-muted-foreground">
           Here's what's happening with your account today.

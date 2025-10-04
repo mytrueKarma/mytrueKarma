@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import FallingHeartsBackground from "@/components/falling-hearts-background";
 
 const currentProjects = [
   {
@@ -111,8 +112,9 @@ export default function TransparencyPage() {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-600 via-teal-600 to-blue-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative bg-gradient-to-br from-green-600 via-teal-600 to-blue-700 text-white overflow-hidden min-h-[60vh]">
+        <FallingHeartsBackground />
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">

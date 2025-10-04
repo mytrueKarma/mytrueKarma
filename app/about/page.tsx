@@ -475,7 +475,7 @@ export default function AboutPage() {
                               ? "https://bilderbilder-atelier.de/bilder-von-lubi/"
                               : member.name === "Sara Jane G."
                               ? "https://www.instagram.com/featherlightarts/"
-                              : "#"
+                              : "https://www.instagram.com/featherlightarts/"
                           }
                           target="_blank"
                           rel="noopener noreferrer"
