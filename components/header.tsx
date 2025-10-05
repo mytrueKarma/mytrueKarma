@@ -21,6 +21,7 @@ import {
   LogOut,
   LogIn,
   Briefcase,
+  Building2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -60,6 +61,11 @@ const customerItems = [
     title: "Dienstleistungen",
     url: "/services",
     icon: Briefcase,
+  },
+  {
+    title: "Immobilien",
+    url: "/immobilien",
+    icon: Building2,
   },
   {
     title: "Suchen",
@@ -226,10 +232,10 @@ export function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link
-                  href="/about"
+                  href="/immobilien"
                   className="px-4 py-2 text-sm font-medium hover:text-blue-600 transition-colors"
                 >
-                  Über uns
+                  Immobilien
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -255,6 +261,12 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link href="/about" className="flex items-center gap-2">
+                    <Info className="h-4 w-4" />
+                    Über uns
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/talent" className="flex items-center gap-2">
                     <Palette className="h-4 w-4" />

@@ -116,10 +116,16 @@ export function Footer() {
                 Shop
               </Link>
               <Link
-                href="/about"
+                href="/services"
                 className="block hover:text-blue-400 transition-colors"
               >
                 Dienstleistungen
+              </Link>
+              <Link
+                href="/immobilien"
+                className="block hover:text-blue-400 transition-colors"
+              >
+                Immobilien
               </Link>
               <Link
                 href="/seller/dashboard"
