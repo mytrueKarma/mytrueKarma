@@ -155,6 +155,12 @@ export function Footer() {
                 Wer steckt dahinter?
               </Link>
               <Link
+                href="/events"
+                className="block hover:text-blue-400 transition-colors"
+              >
+                Events & Veranstaltungen
+              </Link>
+              <Link
                 href="/transparency"
                 className="block hover:text-blue-400 transition-colors"
               >

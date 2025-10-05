@@ -588,6 +588,155 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* New Features Section - Immobilien & Events */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">
+            Noch mehr Möglichkeiten, Gutes zu tun
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Entdecke unsere neuen Bereiche mit Social Impact
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {/* Immobilien Card */}
+          <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group">
+            <div className="relative h-64">
+              <Image
+                src="/ceramic-vase.png"
+                alt="Immobilien mit Social Impact"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              <Badge className="absolute top-4 right-4 bg-green-600 text-white">
+                <HandHeart className="h-3 w-3 mr-1" />
+                Social Impact
+              </Badge>
+            </div>
+            <CardContent className="p-6">
+              <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-blue-600"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Immobilien
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Finde dein Traumzuhause oder vermiete deine Immobilie - und
+                unterstütze dabei soziale Wohnprojekte. Ein Teil jeder Miete
+                oder Provision fließt in lokale Initiativen.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Badge variant="outline">Wohnungen</Badge>
+                <Badge variant="outline">Häuser</Badge>
+                <Badge variant="outline">Verkauf & Vermietung</Badge>
+              </div>
+              <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                <Link href="/immobilien">
+                  Immobilien entdecken
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Events Card */}
+          <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group">
+            <div className="relative h-64">
+              <Image
+                src="/organic-cotton-shirt.jpg"
+                alt="Events & Veranstaltungen mit Social Impact"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              <Badge className="absolute top-4 right-4 bg-purple-600 text-white">
+                <HandHeart className="h-3 w-3 mr-1" />
+                Social Impact
+              </Badge>
+            </div>
+            <CardContent className="p-6">
+              <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-purple-600"
+                >
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                  <line x1="16" x2="16" y1="2" y2="6" />
+                  <line x1="8" x2="8" y1="2" y2="6" />
+                  <line x1="3" x2="21" y1="10" y2="10" />
+                </svg>
+                Events & Veranstaltungen
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Erlebe spannende Events oder organisiere deine eigenen
+                Veranstaltungen. Jedes Event trägt zu sozialen Projekten bei und
+                bringt die Community zusammen.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Badge variant="outline">Musik & Konzerte</Badge>
+                <Badge variant="outline">Sport & Fitness</Badge>
+                <Badge variant="outline">Food & Drinks</Badge>
+              </div>
+              <Button
+                className="w-full bg-purple-600 hover:bg-purple-700"
+                asChild
+              >
+                <Link href="/events">
+                  Events entdecken
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100">
+            <p className="text-3xl font-bold text-blue-600 mb-1">10+</p>
+            <p className="text-sm text-muted-foreground">Immobilien-Angebote</p>
+          </Card>
+          <Card className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100">
+            <p className="text-3xl font-bold text-purple-600 mb-1">15+</p>
+            <p className="text-sm text-muted-foreground">Aktive Events</p>
+          </Card>
+          <Card className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100">
+            <p className="text-3xl font-bold text-green-600 mb-1">2-10%</p>
+            <p className="text-sm text-muted-foreground">
+              Social Impact Beitrag
+            </p>
+          </Card>
+          <Card className="text-center p-6 bg-gradient-to-br from-pink-50 to-pink-100">
+            <p className="text-3xl font-bold text-pink-600 mb-1">50+</p>
+            <p className="text-sm text-muted-foreground">
+              Community Mitglieder
+            </p>
+          </Card>
+        </div>
+      </section>
+
       {/* Newsletter Section */}
       <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="container mx-auto px-4 py-16">

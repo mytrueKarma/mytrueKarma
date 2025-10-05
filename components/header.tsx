@@ -22,6 +22,7 @@ import {
   LogIn,
   Briefcase,
   Building2,
+  Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,6 +67,11 @@ const customerItems = [
     title: "Immobilien",
     url: "/immobilien",
     icon: Building2,
+  },
+  {
+    title: "Events",
+    url: "/events",
+    icon: Calendar,
   },
   {
     title: "Suchen",
@@ -135,6 +141,19 @@ const sellerItems = [
   },
 ];
 
+const myContentItems = [
+  {
+    title: "Meine Immobilien",
+    url: "/my/immobilien",
+    icon: Building2,
+  },
+  {
+    title: "Meine Events",
+    url: "/my/events",
+    icon: Calendar,
+  },
+];
+
 const adminItems = [
   {
     title: "Admin Dashboard",
@@ -198,7 +217,7 @@ export function Header() {
                 mytrueKarma
               </span>
               <span className="text-xs text-gray-600 italic -mt-1">
-                Sozial & Transparent Einkaufen
+                Sozial & Transparent
               </span>
             </div>
           </Link>
@@ -265,6 +284,12 @@ export function Header() {
                   <Link href="/about" className="flex items-center gap-2">
                     <Info className="h-4 w-4" />
                     Über uns
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/events" className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    Events & Veranstaltungen
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -387,6 +412,16 @@ export function Header() {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {userItems.map((item) => (
+                    <DropdownMenuItem key={item.title} asChild>
+                      <Link href={item.url} className="flex items-center gap-2">
+                        <item.icon className="h-4 w-4" />
+                        {item.title}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel>Mein Content</DropdownMenuLabel>
+                  {myContentItems.map((item) => (
                     <DropdownMenuItem key={item.title} asChild>
                       <Link href={item.url} className="flex items-center gap-2">
                         <item.icon className="h-4 w-4" />

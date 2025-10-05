@@ -234,7 +234,7 @@ const services = [
 ];
 
 const stats = [
-  { label: "Vermittelte Immobilien", value: "250+", icon: Home },
+  { label: "Vermittelte Immobilien", value: "10+", icon: Home },
   { label: "Zufriedene Kunden", value: "98%", icon: Heart },
   { label: "Durchschnittliche Verkaufszeit", value: "45 Tage", icon: Calendar },
   { label: "Marktabdeckung", value: "100%", icon: MapPin },
