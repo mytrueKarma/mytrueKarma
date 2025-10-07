@@ -402,13 +402,16 @@ export default function ServicesPage() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Verbinden Sie Ihre Fähigkeiten mit sozialer Wirkung.  <br />Bieten Sie
-              Services an oder finden Sie Jobs, die einen Unterschied machen.
+              Verbinden Sie Ihre Fähigkeiten mit sozialer Wirkung. <br />
+              Bieten Sie Services an oder finden Sie Jobs, die einen Unterschied
+              machen.
             </p>
             <p className="text-lg opacity-80 mb-8">
               Jede Transaktion auf unserer Plattform trägt zu sozialen Projekten
-              bei.   <br /><br />Arbeiten Sie nicht nur für Geld,  <br />sondern für eine bessere
-              Welt.
+              bei. <br />
+              <br />
+              Arbeiten Sie nicht nur für Geld, <br />
+              sondern für eine bessere Welt.
             </p>
 
             {user ? (
@@ -1007,15 +1010,15 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold mb-2">500+</div>
+              <div className="text-3xl font-bold mb-2">10+</div>
               <div className="opacity-90">Aktive Services</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">150+</div>
+              <div className="text-3xl font-bold mb-2">10+</div>
               <div className="opacity-90">Offene Jobs</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">€25.000</div>
+              <div className="text-3xl font-bold mb-2">€25</div>
               <div className="opacity-90">Für soziale Projekte</div>
             </div>
             <div>
