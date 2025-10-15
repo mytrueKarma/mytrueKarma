@@ -1,9 +1,9 @@
 "use client";
 
 import type React from "react";
-
+import { SessionProvider } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { mockUserData, type UserData } from "@/lib/user-utils";
+import { mockUserData } from "@/lib/user-utils";
 
 interface User {
   id: string;
@@ -23,7 +23,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+function AuthContextProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -100,6 +100,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
+  );
+}
+
+/**
+ * Combined Auth Provider
+ * Wraps both NextAuth SessionProvider and custom AuthContext
+ */
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <SessionProvider>
+      <AuthContextProvider>{children}</AuthContextProvider>
+    </SessionProvider>
   );
 }
 

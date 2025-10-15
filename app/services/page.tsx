@@ -148,7 +148,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="relative min-h-screen bg-gradient-to-b from-background to-muted/20">
       <AnimatedParticles />
 
       {/* Hero Section */}

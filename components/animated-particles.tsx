@@ -85,7 +85,7 @@ export default function AnimatedParticles({
   }, [dimensions, count, colors]);
 
   return (
-    <div className={`absolute inset-0 overflow-hidden ${className}`}>
+    <div className={`absolute inset-0 overflow-hidden -z-10 ${className}`}>
       <svg
         width={dimensions.width}
         height={dimensions.height}
