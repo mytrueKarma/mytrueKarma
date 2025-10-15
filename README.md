@@ -435,23 +435,43 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 
 ### Phase 2 - Backend & Authentication (In Arbeit) 🚀
 
-- [ ] **Supabase Integration**
-  - [ ] PostgreSQL Datenbank Setup
-  - [ ] Tabellen für Users, Products, Orders, Events, Immobilien, Services
-  - [ ] Row Level Security (RLS) Policies
-  - [ ] Storage für Bilder
-  - [ ] Real-time Subscriptions
-- [ ] **NextAuth.js Implementation**
-  - [ ] Email/Password Authentication
-  - [ ] OAuth Provider (Google, Facebook)
-  - [ ] Session Management
-  - [ ] Protected Routes & Middleware
-  - [ ] User Roles (Admin, Seller, User)
-- [ ] **Migration von localStorage zu Supabase**
+- [x] **Supabase Packages installiert**
+  - [x] @supabase/supabase-js
+  - [x] @supabase/ssr
+  - [x] Supabase Client (Browser, Server, Middleware)
+- [x] **NextAuth.js Setup**
+  - [x] next-auth & @auth/core installiert
+  - [x] API Route erstellt (`/api/auth/[...nextauth]`)
+  - [x] Credentials Provider (Email/Password)
+  - [x] Google OAuth Provider
+  - [x] JWT Callbacks & Session Management
+  - [x] TypeScript Types
+- [x] **Environment Configuration**
+  - [x] .env.local Template erstellt
+  - [x] Supabase URL & Keys konfiguriert
+  - [x] NextAuth Secret generiert
+- [x] **Datenbank Schema dokumentiert**
+  - [x] 8 Tabellen designed (users, products, orders, cart, wishlist, reviews, notifications, order_items)
+  - [x] Row Level Security (RLS) Policies definiert
+  - [x] SQL Migration Scripts erstellt
+  - [x] Indexes & Constraints dokumentiert
+- [x] **Middleware & Auth Provider**
+  - [x] Protected Routes Middleware
+  - [x] AuthProvider mit SessionProvider
+  - [x] Supabase Session Updates
+- [ ] **Datenbank ausführen** ⏳
+  - [ ] SQL Schema in Supabase ausführen
+  - [ ] Tabellen erstellen & RLS aktivieren
+  - [ ] Test-Daten einfügen
+- [ ] **Migration von localStorage zu Supabase** (Nächster Schritt)
   - [ ] ProductStore → Supabase Tables
   - [ ] Cart → User-spezifische Carts
   - [ ] Wishlist → User Favorites
   - [ ] Order History Migration
+- [ ] **Real-time Features**
+  - [ ] Real-time Subscriptions
+  - [ ] Storage für Bilder
+  - [ ] Live Updates
 
 ### Phase 3 - Payment & Communication (Geplant)
 
@@ -511,47 +531,46 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
    - Vollständige Shop-Integration
 
 5. **Bug Fixes**
+
    - AnimatedParticles z-index Probleme behoben
    - Header-Links auf allen Seiten klickbar
    - Filterlogik für type-basierte Kategorien
    - Dialog-Imports korrigiert
 
-### 🔄 Nächste Schritte
+6. **🎉 Supabase & NextAuth.js Setup (NEU)**
+   - ✅ Alle Packages installiert (@supabase/supabase-js, @supabase/ssr, next-auth, bcryptjs)
+   - ✅ Supabase Client für Browser & Server erstellt
+   - ✅ NextAuth.js API Route mit Credentials + Google OAuth
+   - ✅ Environment Variables konfiguriert
+   - ✅ Datenbank Schema dokumentiert (8 Tabellen + RLS)
+   - ✅ SQL Migration Scripts erstellt (6 Dateien)
+   - ✅ Protected Routes Middleware
+   - ✅ TypeScript Types für NextAuth
+   - ✅ Komplette Dokumentation (SUPABASE-SCHEMA.md, SUPABASE-SETUP.md, SUPABASE-IMPLEMENTATION.md)
 
-1. **Supabase Setup** (Priorität: Hoch)
+### 🔄 Nächste Schritte (Was JETZT zu tun ist)
 
-   ```bash
-   # Installation
-   npm install @supabase/supabase-js @supabase/auth-helpers-nextjs
+1. **SQL Schema ausführen** (Priorität: JETZT!) ⏰
 
-   # Supabase Projekt erstellen auf supabase.com
-   # Environment Variables konfigurieren
-   NEXT_PUBLIC_SUPABASE_URL=your-project-url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-   ```
+   - Öffne Supabase SQL Editor
+   - Kopiere SQL aus `supabase/migrations/01_create_users.sql`
+   - Führe aus (Run)
+   - Wiederhole für 02-06
+   - Siehe: `supabase/MIGRATION-ANLEITUNG.md`
 
-2. **NextAuth.js Integration** (Priorität: Hoch)
+2. **Auth Flow testen** (Nach SQL Setup)
 
-   ```bash
-   # Installation
-   npm install next-auth @auth/supabase-adapter
+   - Login/Register Seiten testen
+   - Protected Routes prüfen
+   - Session Management validieren
 
-   # Setup
-   # - Auth API Route erstellen
-   # - Supabase Adapter konfigurieren
-   # - Provider konfigurieren (Email, Google, etc.)
-   # - Middleware für Protected Routes
-   ```
+3. **ProductStore Migration** (Danach)
 
-3. **Datenbank Migration** (Priorität: Mittel)
+   - localStorage → Supabase umstellen
+   - API Routes für CRUD erstellen
+   - Real-time Updates implementieren
 
-   - Schema-Design für alle Entities
-   - Migration Scripts erstellen
-   - ProductStore auf Supabase API umstellen
-   - localStorage als Fallback behalten
-
-4. **Testing & QA** (Priorität: Mittel)
+4. **Testing & QA** (Fortlaufend)
    - Unit Tests für ProductStore
    - Integration Tests für API Routes
    - E2E Tests mit Playwright
