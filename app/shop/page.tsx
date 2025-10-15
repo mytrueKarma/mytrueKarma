@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,84 +22,41 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
-import { Star, ShoppingCart, Heart, Filter } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import {
+  Star,
+  ShoppingCart,
+  Heart,
+  Filter,
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Home,
+  Building,
+  Bed,
+  Bath,
+  Maximize,
+  Zap,
+  HeartHandshake,
+  User,
+  Tag,
+  CheckCircle,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/contexts/cart-context";
 import { useToast } from "@/hooks/use-toast";
-
-const products = [
-  {
-    id: 1,
-    name: "mytrueKarma Herren T-Shirt",
-    price: 39.0,
-    originalPrice: 49.0,
-    rating: 4.8,
-    reviews: 156,
-    image:
-      "https://image.spreadshirtmedia.net/image-server/v1/products/T812A2PA5886PT17X8Y12D341218728W32899H42315/views/1,width=650,height=650,appearanceId=2,backgroundColor=ffffff,crop=detail,modelId=85/ein-modernes-design-der-duesseldorfer-skyline-kombiniert-mit-dem-logo-von-x-perfekt-fuer-fans-und-liebhaber-der-stadt-am-rhein.jpg",
-    category: "Herrenmode",
-    inStock: true,
-  },
-  {
-    id: 2,
-    name: "mytrueKarma Damen T-Shirt",
-    price: 24.99,
-    originalPrice: 37.99,
-    rating: 4.7,
-    reviews: 203,
-    image:
-      "https://image.spreadshirtmedia.net/image-server/v1/products/T813A803PA5870PT17X0Y3D303055792W27793H33352/views/1,width=650,height=650,appearanceId=803,backgroundColor=ffffff,crop=detail,modelId=5468/exklusives-design-schnappen-sie-sich-dieses-schoene-design-als-geschenk-fuer-einen-freund-in-ihrer-naehe-fuer-jeden-unterstuetzer-der-sozialen-bewegung-u.jpg",
-    category: "Damenmode",
-    inStock: true,
-  },
-  {
-    id: 3,
-    name: "Crossbody Tasche 'Planet Whale'",
-    price: 27.0,
-    originalPrice: 35.0,
-    rating: 4.6,
-    reviews: 89,
-    image:
-      "https://i0.wp.com/mytruekarma.com/wp-content/uploads/2024/04/all-over-print-utility-crossbody-bag-white-front-661532e26a196.jpg",
-    category: "Accessoires",
-    inStock: true,
-  },
-  {
-    id: 4,
-    name: "Exklusive Design Kollektion",
-    price: 32.99,
-    originalPrice: 42.99,
-    rating: 4.9,
-    reviews: 127,
-    image: "/exclusive-social-design-merchandise.jpg",
-    category: "Exklusiv",
-    inStock: false,
-  },
-  {
-    id: 5,
-    name: "Premium Kaffeetasse",
-    price: 19.99,
-    originalPrice: 24.99,
-    rating: 4.2,
-    reviews: 67,
-    image: "/premium-coffee-mug-mytruekarma.jpg",
-    category: "Haushalt",
-    inStock: true,
-  },
-  {
-    id: 6,
-    name: "Ergonomischer Bürostuhl",
-    price: 299.99,
-    originalPrice: 399.99,
-    rating: 4.7,
-    reviews: 45,
-    image: "/ergonomic-office-chair.png",
-    category: "Möbel",
-    inStock: true,
-  },
-];
+import { useProducts } from "@/hooks/use-products";
+import { ProductStore } from "@/lib/products-store";
 
 const categories = [
   "Herrenmode",
@@ -109,24 +66,40 @@ const categories = [
   "Möbel",
   "Sport",
   "Exklusiv",
+  "Immobilien",
+  "Events",
+  "Services",
 ];
 
 export default function ProductsPage() {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const { products: allProducts, isLoading } = useProducts();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState([0, 500]);
+  const [priceRange, setPriceRange] = useState([0, 2000000]);
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [selectedProperty, setSelectedProperty] = useState<any>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = allProducts.filter((product) => {
     const matchesSearch = product.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
+
     const matchesCategory =
       selectedCategories.length === 0 ||
-      selectedCategories.includes(product.category);
+      selectedCategories.some((cat) => {
+        // Spezielle Behandlung für type-basierte "Kategorien"
+        if (cat === "Events") return product.type === "event";
+        if (cat === "Immobilien") return product.type === "immobilie";
+        if (cat === "Services") return product.type === "service";
+        // Normale Kategorie-Filterung
+        return product.category === cat;
+      });
+
     const matchesPrice =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return matchesSearch && matchesCategory && matchesPrice;
@@ -142,7 +115,7 @@ export default function ProductsPage() {
 
   const handleAddToCart = (
     e: React.MouseEvent,
-    product: (typeof products)[0]
+    product: (typeof allProducts)[0]
   ) => {
     e.preventDefault(); // Prevent navigation when clicking add to cart
     e.stopPropagation();
@@ -207,19 +180,68 @@ export default function ProductsPage() {
             </div>
 
             {/* Price Range */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label>Preisbereich</Label>
-              <div className="px-2">
-                <Slider
-                  value={priceRange}
-                  onValueChange={setPriceRange}
-                  max={500}
-                  step={10}
-                  className="w-full"
-                />
-                <div className="flex justify-between text-sm text-muted-foreground mt-1">
-                  <span>€{priceRange[0]}</span>
-                  <span>€{priceRange[1]}</span>
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="minPrice"
+                    className="text-xs text-muted-foreground"
+                  >
+                    Min. Preis
+                  </Label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                      €
+                    </span>
+                    <Input
+                      id="minPrice"
+                      type="number"
+                      placeholder="0"
+                      value={priceRange[0]}
+                      onChange={(e) => {
+                        const value = Math.max(0, Number(e.target.value));
+                        setPriceRange([value, priceRange[1]]);
+                      }}
+                      className="pl-7"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="maxPrice"
+                    className="text-xs text-muted-foreground"
+                  >
+                    Max. Preis
+                  </Label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                      €
+                    </span>
+                    <Input
+                      id="maxPrice"
+                      type="number"
+                      placeholder="2000000"
+                      value={priceRange[1]}
+                      onChange={(e) => {
+                        const value = Math.max(
+                          priceRange[0],
+                          Number(e.target.value)
+                        );
+                        setPriceRange([priceRange[0], value]);
+                      }}
+                      className="pl-7"
+                    />
+                  </div>
+                </div>
+                <div className="px-2">
+                  <Slider
+                    value={priceRange}
+                    onValueChange={setPriceRange}
+                    max={2000000}
+                    step={1000}
+                    className="w-full"
+                  />
                 </div>
               </div>
             </div>
@@ -270,7 +292,18 @@ export default function ProductsPage() {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
-              <Link key={product.id} href={`/shop/${product.id}`}>
+              <div
+                key={product.id}
+                onClick={() => {
+                  if (product.type === "event") {
+                    setSelectedEvent(product);
+                  } else if (product.type === "immobilie") {
+                    setSelectedProperty(product);
+                  } else if (product.type === "service") {
+                    setSelectedService(product);
+                  }
+                }}
+              >
                 <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer h-full">
                   <CardHeader className="p-0">
                     <div className="relative">
@@ -289,10 +322,21 @@ export default function ProductsPage() {
                           Nicht verfügbar
                         </Badge>
                       )}
+                      {product.type === "event" && (
+                        <Badge className="absolute top-2 left-2 bg-purple-600">
+                          Event
+                        </Badge>
+                      )}
+                      {product.type === "immobilie" && (
+                        <Badge className="absolute top-2 left-2 bg-blue-600">
+                          Immobilie
+                        </Badge>
+                      )}
                       <Button
                         size="icon"
                         variant="secondary"
                         className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <Heart className="h-4 w-4" />
                       </Button>
@@ -322,6 +366,11 @@ export default function ProductsPage() {
                     <div className="flex items-center gap-2">
                       <span className="text-xl font-bold text-green-600">
                         €{product.price}
+                        {product.priceType && (
+                          <span className="text-sm font-normal">
+                            /{product.priceType}
+                          </span>
+                        )}
                       </span>
                       {product.originalPrice > product.price && (
                         <span className="text-sm text-muted-foreground line-through">
@@ -334,14 +383,25 @@ export default function ProductsPage() {
                     <Button
                       className="w-full bg-green-600 hover:bg-green-700"
                       disabled={!product.inStock}
-                      onClick={(e) => handleAddToCart(e, product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(e, product);
+                      }}
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      {product.inStock ? "In den Warenkorb" : "Nicht verfügbar"}
+                      {product.type === "event"
+                        ? "Ticket kaufen"
+                        : product.type === "immobilie"
+                        ? "Anfrage stellen"
+                        : product.type === "service"
+                        ? "Service buchen"
+                        : product.inStock
+                        ? "In den Warenkorb"
+                        : "Nicht verfügbar"}
                     </Button>
                   </CardFooter>
                 </Card>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -354,6 +414,419 @@ export default function ProductsPage() {
           )}
         </div>
       </div>
+
+      {/* Event Dialog */}
+      <Dialog
+        open={!!selectedEvent}
+        onOpenChange={() => setSelectedEvent(null)}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          {selectedEvent && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl">
+                  {selectedEvent.name}
+                </DialogTitle>
+                <DialogDescription>
+                  Alle Details zu diesem Event
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <div className="relative h-64 w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedEvent.image}
+                    alt={selectedEvent.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Datum</p>
+                      <p className="font-medium">{selectedEvent.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Uhrzeit</p>
+                      <p className="font-medium">{selectedEvent.time} Uhr</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Ort</p>
+                      <p className="font-medium">{selectedEvent.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        Teilnehmer
+                      </p>
+                      <p className="font-medium">
+                        {selectedEvent.attendees}/{selectedEvent.maxAttendees}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-2">Beschreibung</h3>
+                  <p className="text-muted-foreground">
+                    {selectedEvent.description}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <User className="h-5 w-5" />
+                    Veranstalter
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {selectedEvent.organizer}
+                  </p>
+                </div>
+
+                {selectedEvent.tags && selectedEvent.tags.length > 0 && (
+                  <div>
+                    <h3 className="font-semibold mb-2 flex items-center gap-2">
+                      <Tag className="h-5 w-5" />
+                      Tags
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedEvent.tags.map((tag: string) => (
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="bg-green-50 dark:bg-green-950 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <HeartHandshake className="h-5 w-5 text-green-600" />
+                    Social Impact
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {selectedEvent.socialImpact}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between pt-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Preis pro Ticket
+                    </p>
+                    <p className="text-2xl font-bold text-green-600">
+                      {selectedEvent.price === 0
+                        ? "Kostenlos"
+                        : `€${selectedEvent.price}`}
+                    </p>
+                  </div>
+                  <Button
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(e, selectedEvent);
+                      setSelectedEvent(null);
+                    }}
+                  >
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Ticket kaufen
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Property Dialog */}
+      <Dialog
+        open={!!selectedProperty}
+        onOpenChange={() => setSelectedProperty(null)}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          {selectedProperty && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl">
+                  {selectedProperty.name}
+                </DialogTitle>
+                <DialogDescription>
+                  Alle Details zu dieser Immobilie
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <div className="relative h-64 w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedProperty.image}
+                    alt={selectedProperty.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-2">
+                    <Home className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Typ</p>
+                      <p className="font-medium">
+                        {selectedProperty.propertyType}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Building className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Zweck</p>
+                      <p className="font-medium">{selectedProperty.purpose}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Lage</p>
+                      <p className="font-medium">{selectedProperty.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Maximize className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Größe</p>
+                      <p className="font-medium">{selectedProperty.size} m²</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Bed className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Zimmer</p>
+                      <p className="font-medium">{selectedProperty.rooms}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Bath className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        Badezimmer
+                      </p>
+                      <p className="font-medium">
+                        {selectedProperty.bathrooms}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-2">Beschreibung</h3>
+                  <p className="text-muted-foreground">
+                    {selectedProperty.description}
+                  </p>
+                </div>
+
+                {selectedProperty.features &&
+                  selectedProperty.features.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-2 flex items-center gap-2">
+                        <Zap className="h-5 w-5" />
+                        Ausstattung
+                      </h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        {selectedProperty.features.map((feature: string) => (
+                          <div
+                            key={feature}
+                            className="flex items-center gap-2"
+                          >
+                            <div className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                            <span className="text-sm">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <HeartHandshake className="h-5 w-5 text-blue-600" />
+                    Social Impact
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {selectedProperty.socialImpact}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between pt-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      {selectedProperty.purpose === "Vermietung"
+                        ? "Miete"
+                        : "Preis"}
+                    </p>
+                    <p className="text-2xl font-bold text-blue-600">
+                      €{selectedProperty.price.toLocaleString()}
+                      {selectedProperty.priceType && (
+                        <span className="text-sm font-normal">
+                          /{selectedProperty.priceType}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(e, selectedProperty);
+                      setSelectedProperty(null);
+                    }}
+                  >
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Anfrage stellen
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Service Dialog */}
+      <Dialog
+        open={!!selectedService}
+        onOpenChange={() => setSelectedService(null)}
+      >
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          {selectedService && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl">
+                  {selectedService.name}
+                </DialogTitle>
+                <DialogDescription>
+                  von {selectedService.provider}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <div className="relative h-48 w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedService.image || "/placeholder-user.jpg"}
+                    alt={selectedService.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Badge variant="secondary">{selectedService.category}</Badge>
+                  {selectedService.verified && (
+                    <Badge className="bg-green-600">
+                      <CheckCircle className="h-3 w-3 mr-1" />
+                      Verifiziert
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {selectedService.location && (
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-5 w-5 text-purple-600" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          Standort
+                        </p>
+                        <p className="font-medium">
+                          {selectedService.location}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Bewertung</p>
+                      <p className="font-medium">
+                        {selectedService.rating} ({selectedService.reviews}{" "}
+                        Bewertungen)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-2">Beschreibung</h3>
+                  <p className="text-muted-foreground">
+                    {selectedService.description}
+                  </p>
+                </div>
+
+                {selectedService.tags && selectedService.tags.length > 0 && (
+                  <div>
+                    <h3 className="font-semibold mb-2 flex items-center gap-2">
+                      <Tag className="h-5 w-5" />
+                      Skills & Expertise
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedService.tags.map((tag: string) => (
+                        <Badge key={tag} variant="outline">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="bg-purple-50 dark:bg-purple-950 p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <HeartHandshake className="h-5 w-5 text-purple-600" />
+                    Social Impact
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {selectedService.socialImpact}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between pt-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      {selectedService.hourlyRate ? "Stundensatz" : "Preis"}
+                    </p>
+                    <p className="text-2xl font-bold text-purple-600">
+                      €{selectedService.price}
+                      {selectedService.hourlyRate && (
+                        <span className="text-sm font-normal">/Stunde</span>
+                      )}
+                    </p>
+                  </div>
+                  <Button
+                    className="bg-purple-600 hover:bg-purple-700"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(e, selectedService);
+                      setSelectedService(null);
+                    }}
+                  >
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Service buchen
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

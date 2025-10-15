@@ -249,9 +249,9 @@ export default function HomePage() {
           {categories.map((category, index) => (
             <Link
               key={category.name}
-              href={`/products?category=${encodeURIComponent(
-                category.name.toLowerCase().replace(/\s+/g, "-")
-              )}`}
+              href={`/categories/${category.name
+                .toLowerCase()
+                .replace(/['&\s]+/g, "-")}`}
             >
               <Card
                 className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
