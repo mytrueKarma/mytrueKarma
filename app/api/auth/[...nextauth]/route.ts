@@ -1,3 +1,77 @@
+// TEMPORÄR DEAKTIVIERT - NextAuth mit Supabase
+// Wird aktiviert nach Supabase DB Setup
+// Für jetzt: Dummy-Implementation damit die App läuft
+
+import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+
+export const authOptions: NextAuthOptions = {
+  providers: [
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        // TEMPORÄR: Dummy Auth - akzeptiert jede Anmeldung
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Email und Passwort sind erforderlich");
+        }
+
+        // TODO: Nach Supabase Setup wieder aktivieren
+        // const supabase = await createClient();
+        // const { data: user, error } = await supabase.from("users")...
+
+        return {
+          id: "dummy-id",
+          email: credentials.email,
+          name: "Test User",
+          role: "user",
+        };
+      },
+    }),
+  ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
+      }
+      return session;
+    },
+  },
+
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/error",
+  },
+
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+  },
+
+  secret: process.env.NEXTAUTH_SECRET,
+};
+
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
+
+/* 
+==============================================
+ORIGINAL CODE (MIT SUPABASE) - FÜR SPÄTER
+==============================================
+
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -134,3 +208,4 @@ export const authOptions: NextAuthOptions = {
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+*/

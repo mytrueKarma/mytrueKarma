@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { updateSession } from "@/lib/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
-  // Update Supabase session
-  return await updateSession(request);
+  // Temporär deaktiviert - Supabase Middleware wird aktiviert nach DB Setup
+  // Für jetzt: Einfach durchlassen
+  return NextResponse.next();
+
+  // TODO: Nach Supabase DB Setup wieder aktivieren:
+  // import { updateSession } from "@/lib/supabase/middleware";
+  // return await updateSession(request);
 }
 
 export const config = {

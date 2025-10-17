@@ -1,10 +1,20 @@
+// TEMPORÄR DEAKTIVIERT - Wird nach DB Setup reaktiviert
+/**
+ * Supabase Client ist temporär deaktiviert
+ * Grund: Datenbank-Tabellen existieren noch nicht
+ */
+export async function createClient() {
+  throw new Error(
+    "Supabase Client ist temporär deaktiviert. Bitte erst die Datenbank-Tabellen erstellen."
+  );
+}
+
+/*
+ORIGINAL CODE - FÜR SPÄTER:
+
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-/**
- * Supabase Client für Server-Side (Server Components, API Routes)
- * Nutzt Cookies für Session Management
- */
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -31,3 +41,4 @@ export async function createClient() {
     }
   );
 }
+*/
