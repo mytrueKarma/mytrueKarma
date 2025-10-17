@@ -16,6 +16,7 @@ import {
   TreePine,
 } from "lucide-react";
 import Image from "next/image";
+import { TeamCard3D } from "@/components/team-card-3d";
 
 const teamMembers = [
   {
@@ -77,14 +78,47 @@ const timeline = [
   },
   {
     date: "Januar 2024",
-    location: "Aktuell",
-    title: "Business-Coaching",
+    location: "Düsseldorf",
+    title: "Business-Coaching mit Andreas Idelmann",
     description:
       "Wir haben von Andreas Idelmann ein Business-Coaching erhalten, das sich besonders auf die Feinheiten unseres Businessplans konzentrierte.",
     details:
-      "Als erfahrener und unterstützender Experte für Finanzierung und Fördermittel hat er uns wertvolle Einblicke gegeben und uns dabei geholfen, unseren Zahlenbereich perfekt anzupassen. Seine Expertise und Engagement haben uns sehr beeindruckt. Wir haben außerdem ein weiteres Business-Coaching von selbständigkeit.de in Anspruch genommen. Dabei erhielten wir wertvolle Unterstützung nicht nur bei der Optimierung unserer SEO-Strategie, sondern auch bei anderen wichtigen Aspekten des Geschäftsbetriebs. Die Coaches haben uns umfassend beraten und wertvolle Tipps gegeben, insbesondere auch im Bereich Marketing. Nochmals vielen Dank für die wertvollen Informationen und die professionelle Begleitung durch euer Team!",
-    icon: "🚀",
+      "Als erfahrener und unterstützender Experte für Finanzierung und Fördermittel hat er uns wertvolle Einblicke gegeben und uns dabei geholfen, unseren Zahlenbereich perfekt anzupassen. Seine Expertise und Engagement haben uns sehr beeindruckt.",
+    icon: "📊",
     color: "from-purple-400 to-pink-500",
+  },
+  {
+    date: "März 2024",
+    location: "Online",
+    title: "SEO & Marketing-Coaching",
+    description:
+      "Ein weiteres Business-Coaching von selbständigkeit.de brachte uns wertvolle Unterstützung in den Bereichen SEO-Strategie und Marketing.",
+    details:
+      "Die professionelle Begleitung durch das Team von selbständigkeit.de hat uns umfassend beraten und wertvolle Einblicke in verschiedene Aspekte des Geschäftsbetriebs gegeben. Besonders im Bereich Marketing konnten wir wichtige Impulse für unsere Weiterentwicklung mitnehmen. Nochmals vielen Dank für die wertvollen Informationen und die professionelle Begleitung durch euer Team!",
+    icon: "📈",
+    color: "from-blue-400 to-indigo-500",
+  },
+  {
+    date: "Oktober 2024",
+    location: "Berlin / Online",
+    title: "Technisches Upgrade & Umschulung",
+    description:
+      "Der Beginn einer spannenden Reise: Umschulung am Digital Career Institute und kompletter Neuaufbau der mytrueKarma-Plattform auf GitHub.",
+    details:
+      "Um mytrueKarma auf das nächste Level zu bringen, habe ich eine Umschulung am Digital Career Institute GmbH begonnen. Parallel dazu arbeite ich an einem kompletten technischen Relaunch: Die Website wird von WordPress auf eine individuell entwickelte Next.js-Plattform migriert. Warum? Weil unsere Community mehr verdient – eine schnellere, flexiblere und persönlichere User Experience. Mit voller Kontrolle über Code, Design und Performance schaffen wir die Grundlage für die Zukunft von mytrueKarma. WordPress war ein großartiger Start, aber jetzt ist es Zeit für Innovation! 🚀",
+    icon: "💻",
+    color: "from-cyan-400 to-blue-500",
+  },
+  {
+    date: "Oktober 2025",
+    location: "Aktuell",
+    title: "Website-Relaunch mit GitHub Copilot",
+    description:
+      "Die neue mytrueKarma-Plattform nimmt Gestalt an – gebaut mit modernster Technologie und KI-Unterstützung für maximale Performance.",
+    details:
+      "Mit GitHub Copilot als kreativem Partner wird die Vision Realität: Eine blitzschnelle, maßgeschneiderte E-Commerce-Plattform mit Social Impact im Kern. Die neue Architektur ermöglicht es uns, Features schneller zu entwickeln, das Design flexibel anzupassen und ein noch besseres Shopping-Erlebnis zu bieten. Jede Zeile Code wird mit Leidenschaft geschrieben – für eine Plattform, die nicht nur schön aussieht, sondern auch die Welt ein Stückchen besser macht.",
+    icon: "🚀",
+    color: "from-green-400 to-emerald-500",
   },
 ];
 
@@ -210,9 +244,10 @@ export default function AboutPage() {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl opacity-90 mb-8">
-                  Wir sind eine Modemarke mit einem einzigartigen Ansatz.  <br />Denn
-                  wir sind mehr als nur ein Label – wir sind eine Bewegung,  <br />die
-                  die Welt der Mode neu definiert.
+                  Wir sind eine Modemarke mit einem einzigartigen Ansatz. <br />
+                  Denn wir sind mehr als nur ein Label – wir sind eine Bewegung,{" "}
+                  <br />
+                  die die Welt der Mode neu definiert.
                 </p>
                 <p className="text-lg opacity-80">
                   Gegründet 2021 in Düsseldorf, setzen wir auf stilvolle Designs
@@ -310,13 +345,14 @@ export default function AboutPage() {
                   <Card className="relative p-8 md:p-12 border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
                     <p className="text-xl md:text-2xl leading-relaxed text-gray-700 font-medium">
                       mytrueKarma strebt danach, nicht nur modische Statements
-                      zu setzen,  <br />sondern auch einen
+                      zu setzen, <br />
+                      sondern auch einen
                       <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
                         {" "}
                         positiven Einfluss auf die Welt{" "}
                       </span>
-                      auszuüben. 
-                       <br /> Unser Konzept geht über den bloßen Verkauf von
+                      auszuüben.
+                      <br /> Unser Konzept geht über den bloßen Verkauf von
                       Produkten hinaus.
                     </p>
                   </Card>
@@ -356,8 +392,9 @@ export default function AboutPage() {
                             50%-Spendenmodell
                           </span>
                           . Die Hälfte unserer Erlöse fließt in wohltätige
-                          Projekte, und jeder Kauf wird zu einer guten Tat.  <br />Wir
-                          sind stolz darauf eine Kraft für positive
+                          Projekte, und jeder Kauf wird zu einer guten Tat.{" "}
+                          <br />
+                          Wir sind stolz darauf eine Kraft für positive
                           Veränderungen in der Welt zu sein.
                         </p>
                       </div>
@@ -397,9 +434,10 @@ export default function AboutPage() {
                             {" "}
                             Handelsplattform
                           </span>{" "}
-                          zu entwickeln.  <br />Dabei sollen nicht nur Produkte
-                          verkauft, sondern auch transparente Mechanismen für
-                          soziales Engagement etabliert werden.
+                          zu entwickeln. <br />
+                          Dabei sollen nicht nur Produkte verkauft, sondern auch
+                          transparente Mechanismen für soziales Engagement
+                          etabliert werden.
                         </p>
                       </div>
                     </CardContent>
@@ -419,8 +457,10 @@ export default function AboutPage() {
                     </div>
                     <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                       Begleite uns auf unserer Reise, denn bei mytrueKarma geht
-                      es nicht nur um Mode,  <br />sondern um einen nachhaltigen und
-                      positiven Einfluss, <br />den wir gemeinsam gestalten können.
+                      es nicht nur um Mode, <br />
+                      sondern um einen nachhaltigen und positiven Einfluss,{" "}
+                      <br />
+                      den wir gemeinsam gestalten können.
                     </p>
                   </Card>
                 </div>
@@ -429,10 +469,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-white">
+        {/* Team Section with 3D Cards */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-white">
               Meet the Minds: Das Team von mytrueKarma
             </h2>
             <p className="text-xl text-white">
@@ -440,54 +480,25 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12 max-w-7xl mx-auto">
             {teamMembers.map((member, index) => (
-              <Card
+              <TeamCard3D
                 key={member.name}
-                className="hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-              >
-                <CardHeader className="text-center">
-                  <div className="relative w-32 h-32 mx-auto mb-4 md:mb-4 mb-6">
-                    <Image
-                      src={
-                        member.image ||
-                        "/placeholder.svg?height=128&width=128&query=team member portrait"
-                      }
-                      alt={member.name}
-                      width={128}
-                      height={128}
-                      className="rounded-full object-cover"
-                    />
-                  </div>
-                  <CardTitle className="text-xl">{member.name}</CardTitle>
-                  <Badge variant="secondary">{member.role}</Badge>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-center">
-                    {member.description}
-                  </p>
-                  {member.name !== "Michael Medvidov" && (
-                    <div className="mt-4 text-center">
-                      <Button variant="outline" size="sm" asChild>
-                        <a
-                          href={
-                            member.name === "Lyubow Landa"
-                              ? "https://bilderbilder-atelier.de/bilder-von-lubi/"
-                              : member.name === "Sara Jane G."
-                              ? "https://www.instagram.com/featherlightarts/"
-                              : "https://www.instagram.com/featherlightarts/"
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Palette className="h-4 w-4 mr-2" />
-                          Artworks ansehen
-                        </a>
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                name={member.name}
+                role={member.role}
+                description={member.description}
+                image={member.image}
+                link={
+                  member.name === "Lyubow Landa"
+                    ? "https://bilderbilder-atelier.de/bilder-von-lubi/"
+                    : member.name === "Sara Jane Gupton"
+                    ? "https://www.instagram.com/featherlightarts/"
+                    : undefined
+                }
+                badge={
+                  member.name === "Michael Medvidov" ? "Gründer" : undefined
+                }
+              />
             ))}
           </div>
         </section>
@@ -723,7 +734,7 @@ export default function AboutPage() {
         </section>
 
         {/* Digital Gallery Section */}
-        <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+        <section className="bg-white">
           <div className="container mx-auto px-4 py-16">
             <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
               {/* Gallery Image */}
@@ -734,7 +745,7 @@ export default function AboutPage() {
                     alt="Digitale Kunstgalerie - Spatial.io Karmaland"
                     width={600}
                     height={400}
-                    className="rounded-2xl transform hover:scale-105 transition-all duration-300"
+                    className="rounded-2xl transform hover:scale-105 transition-all duration-300 shadow-xl"
                   />
                   <div className="absolute inset-0 from-black/20 to-transparent rounded-2xl"></div>
                 </div>
@@ -742,23 +753,23 @@ export default function AboutPage() {
 
               {/* Content */}
               <div className="lg:w-1/2 text-center lg:text-left">
-                <h2 className="text-3xl font-bold mb-4">
+                <h2 className="text-3xl font-bold mb-4 text-gray-900">
                   Unsere "Digitale Kunstgalerie"
                 </h2>
-                <p className="text-xl mb-8 opacity-90">
+                <p className="text-xl mb-8 text-gray-700">
                   Tauche ein und finde digital Inspiration in unseren Artworks!
                 </p>
-                <p className="mb-8 opacity-80">
+                <p className="mb-8 text-gray-600">
                   Du kannst den Raum mit dem Handy aber auch mit einer VR-Brille
                   betreten.*
                 </p>
-                <p className="text-sm mb-8 opacity-70">
+                <p className="text-sm mb-8 text-gray-500">
                   *Download der App Spatial notwendig. (Ohne App auf dem PC
                   möglich)
                 </p>
                 <Button
                   size="lg"
-                  className="bg-white text-purple-600 hover:bg-gray-100 font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
+                  className="bg-purple-600 text-white hover:bg-purple-700 font-semibold shadow-lg transform hover:scale-105 transition-all duration-200"
                   asChild
                 >
                   <a

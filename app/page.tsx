@@ -27,6 +27,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/contexts/cart-context";
 import { useToast } from "@/hooks/use-toast";
+import { InfoCard3D } from "@/components/info-card-3d";
 
 const featuredProducts = [
   {
@@ -536,25 +537,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section with 3D Effect */}
       <section className="bg-muted">
         <div className="container mx-auto px-4 py-16">
           <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
-            {/* Left Side - Title */}
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <div className="mb-8">
-                <Image
-                  src="/myk-logo.png"
-                  alt="mytrueKarma Logo"
-                  width={120}
-                  height={120}
-                  className="mx-auto lg:mx-0"
-                />
+            {/* Left Side - Logo & Title with 3D Effect */}
+            <InfoCard3D className="lg:w-1/2">
+              <div className="text-center bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
+                <div className="mb-8">
+                  <Image
+                    src="/myk-logo.png"
+                    alt="mytrueKarma Logo"
+                    width={120}
+                    height={120}
+                    className="mx-auto"
+                  />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                  Warum gerade mytrueKarma?
+                </h2>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                Warum gerade mytrueKarma?
-              </h2>
-            </div>
+            </InfoCard3D>
 
             {/* Right Side - Content */}
             <div className="lg:w-1/2 space-y-6 text-lg text-muted-foreground">
