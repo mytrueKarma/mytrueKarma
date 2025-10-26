@@ -191,48 +191,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Good vibes only</h2>
-          <p className="text-xl text-muted-foreground">
-            EXKLUSIVE DESIGNS - Nur für soziale Verbraucher.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-            <div className="mb-4">
-              <Users className="h-12 w-12 mx-auto text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Solidarität</h3>
-            <p className="text-muted-foreground">
-              Unser Engagement für eine bessere Welt
-            </p>
-          </Card>
-
-          <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-            <div className="mb-4">
-              <HandHeart className="h-12 w-12 mx-auto text-green-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Sozial</h3>
-            <p className="text-muted-foreground">
-              Spenden gehen an soziale Projekte
-            </p>
-          </Card>
-
-          <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-            <div className="mb-4">
-              <TransparencyIcon className="h-12 w-12 mx-auto text-purple-600" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Transparent</h3>
-            <p className="text-muted-foreground">
-              Klarheit schaffen! mytrueKarma bleibt für immer völlig
-              transparent!
-            </p>
-          </Card>
-        </div>
-      </section>
+   
 
       {/* Categories Section */}
       <section className="container mx-auto px-4">
