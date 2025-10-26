@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +17,23 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import FallingHeartsBackground from "@/components/falling-hearts-background";
+import { TransparencyFeed } from "@/components/transparency/TransparencyFeed";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
+import { Transaction } from "@/components/transparency/types";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+function formatDateTime(date: Date) {
+  return date.toLocaleString("de-DE", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
 
 const currentProjects = [
   {
@@ -99,6 +115,28 @@ const instagramUpdates = [
 ];
 
 export default function TransparencyPage() {
+  const { data } = useSWR<Transaction[]>("/api/transactions", fetcher);
+  const [summary, setSummary] = useState<{
+    revenue: number;
+    expenses: number;
+    details: { productName: string; revenue: number }[];
+  }>({ revenue: 0, expenses: 0, details: [] });
+  const [now, setNow] = useState<string>("");
+
+  useEffect(() => {
+    setNow(formatDateTime(new Date()));
+    if (!data) return;
+    const year = 2024;
+    const filtered = data.filter((tx) => tx.year === year);
+    const revenue = filtered.reduce((sum, tx) => sum + tx.revenue, 0);
+    // Dummy: expenses always 0 for now
+    const details = filtered.map((tx) => ({
+      productName: tx.productName,
+      revenue: tx.revenue,
+    }));
+    setSummary({ revenue, expenses: 0, details });
+  }, [data]);
+
   const [isVisible, setIsVisible] = useState(false);
   const [currentDonationPot] = useState(5);
   const [selectedYear, setSelectedYear] = useState("2024");
@@ -320,8 +358,13 @@ export default function TransparencyPage() {
               HIER FINDEST DU ALLE INFOS ZU UNSEREN EINNAHMEN & AUSGABEN
             </p>
             <p className="text-sm text-muted-foreground mt-2">
-              Derzeit erfolgt unsere Transparenz über Instagram, jedoch arbeiten
-              wir noch an einer effizienteren Lösung für dieses System.
+              Derzeit erfolgt unsere Transparenz in Bezug auf Transaktionen über
+              Instagram, jedoch arbeiten wir noch an einer effizienteren Lösung
+              für dieses System.
+              <p>
+                Aktuelle Version des "Transparenz Live-Feeds" findest du weiter
+                unten auf dieser Seite.
+              </p>
             </p>
           </div>
 
@@ -538,6 +581,73 @@ export default function TransparencyPage() {
             </Button>
           </div>
         </div>
+      </section>
+
+      {/* Transparency Feed Section */}
+      <section className="container mx-auto px-4 py-12">
+        {/* LIVE Button */}
+        <div className="flex justify-center mb-4">
+          <span className="px-4 py-1 rounded-full bg-red-600 text-white font-bold text-lg shadow animate-pulse border-2 border-red-700">
+            LIVE-FEED
+          </span>
+        </div>
+        <h1 className="text-4xl font-bold mb-8 text-center text-gray-900">
+          Erweiterter Transparenz Live-Feed (Dummy)
+        </h1>
+        <p className="text-lg text-gray-600 mb-10 text-center max-w-2xl mx-auto">
+          Hier siehst du alle Kunden-Transaktionen, Spenden und den Social
+          Impact von mytrueKarma – live und transparent, nach Jahren gruppiert.
+        </p>
+
+        {/* Einnahmen & Ausgaben 2024 */}
+        <section className="max-w-2xl mx-auto mb-10 bg-white rounded-xl shadow p-6 border border-gray-100">
+          <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
+            Einnahmen & Ausgaben 2024
+            <span className="text-xs font-normal text-gray-500 bg-gray-50 px-2 py-1 rounded">
+              {now}
+            </span>
+          </h2>
+          <div className="flex flex-wrap gap-8 mb-4">
+            <div>
+              <div className="text-gray-500 text-sm">Einnahmen</div>
+              <div className="text-2xl font-bold text-green-600">
+                €{summary.revenue.toFixed(2)}
+              </div>
+            </div>
+            <div>
+              <div className="text-gray-500 text-sm">Ausgaben</div>
+              <div className="text-2xl font-bold text-red-500">
+                €{summary.expenses.toFixed(2)}
+              </div>
+            </div>
+          </div>
+          <div className="mb-2 text-gray-700 font-semibold">
+            Detaillierte Aufstellung:
+          </div>
+          <div className="divide-y divide-gray-100">
+            {summary.details.length === 0 ? (
+              <div className="text-gray-400 text-sm py-2">
+                Keine Einnahmen für 2024 vorhanden.
+              </div>
+            ) : (
+              summary.details.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex justify-between items-center py-2"
+                >
+                  <span className="truncate text-gray-900">
+                    {item.productName}
+                  </span>
+                  <span className="font-bold text-green-600">
+                    +€{item.revenue.toFixed(2)}
+                  </span>
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+
+        <TransparencyFeed />
       </section>
     </div>
   );
