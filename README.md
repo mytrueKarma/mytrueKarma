@@ -1,6 +1,6 @@
 # mytrueKarma - Social Commerce Platform
 
-![mytrueKarma Logo](public/myk-logo.png)
+<img src="public/myk-logo.png" alt="mytrueKarma Logo" width="200"/>
 
 **мүтʀueᴋaʀᴍa EST. 2021** - Eine innovative Social Commerce Platform für nachhaltigen und transparenten Handel mit Fokus auf soziale Projekte und Künstlerförderung.
 
@@ -38,7 +38,8 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 
 ## ✨ Features
 
-### 🛍️ E-Commerce
+<details>
+<summary><strong>🛍️ E-Commerce</strong></summary>
 
 - **Produktkatalog** mit detaillierten Produktseiten
 - **Responsive Shop** mit Kategoriefilterung
@@ -49,7 +50,10 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Wishlist-Funktionalität**
 - **Bestellverfolgung** und Status-Management
 
-### 📦 Dynamisches Produktsystem
+</details>
+
+<details>
+<summary><strong>📦 Dynamisches Produktsystem</strong></summary>
 
 - **Zentrales ProductStore-System** für alle Produkttypen
 - **4 Produkttypen**: Normale Produkte, Events, Immobilien, Services
@@ -62,7 +66,10 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
   - 4 Services
 - **Debug-Tool** für Troubleshooting (`/admin/products/debug`)
 
-### 🏢 Immobilien & Events
+</details>
+
+<details>
+<summary><strong>🏢 Immobilien & Events</strong></summary>
 
 - **Immobilien-Verwaltung** mit Verkauf/Vermietung
 - **Event-Management** mit Ticketverkauf
@@ -71,7 +78,10 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Preisfilter** bis 2.000.000€ für Immobilien
 - **My Events/Immobilien Seiten** mit direktem Admin-Zugang
 
-### 💼 Service Marketplace
+</details>
+
+<details>
+<summary><strong>💼 Service Marketplace</strong></summary>
 
 - **Service-Verwaltung** mit Anbieter-Profilen
 - **Stundensatz-Kalkulation**
@@ -80,7 +90,10 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Bewertungssystem** mit Reviews
 - **Vollständige Shop-Integration**
 
-### 👨‍💼 Seller Dashboard
+</details>
+
+<details>
+<summary><strong>👨‍💼 Seller Dashboard</strong></summary>
 
 - **Umfassendes Verkäufer-Dashboard** mit Analytics
 - **Produktverwaltung** (Hinzufügen, Bearbeiten, Löschen)
@@ -88,7 +101,10 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Tracking-System** für Sendungsverfolgung
 - **Notizen-System** für interne Kommunikation
 
-### 🎨 Künstlerförderung
+</details>
+
+<details>
+<summary><strong>🎨 Künstlerförderung</strong></summary>
 
 - **Featured Artists Showcase** mit Portfolio-Links
 - **Talent-Förderungsprogramm**
@@ -96,21 +112,20 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Bewerbungsformulare** für neue Talente
 - **Community-Netzwerk** für Kreative
 
-### 💼 Service Marketplace
+</details>
 
-- **Dual Service/Job System**
-- **Interaktive Erstellungsformulare**
-- **Kategorie-basierte Suche**
-- **Dienstleistungs-Portfolio**
-
-### 📱 Kommunikation
+<details>
+<summary><strong>📱 Kommunikation</strong></summary>
 
 - **WhatsApp Integration** auf allen Kontaktpunkten
 - **Social Media Links** (Instagram, Facebook, Pinterest)
 - **Kontaktformulare** für verschiedene Anfragen
 - **FAQ-Systeme** mit expandierbaren Antworten
 
-### 🎨 Design & UX
+</details>
+
+<details>
+<summary><strong>🎨 Design & UX</strong></summary>
 
 - **Moderne UI/UX** mit Tailwind CSS
 - **Responsive Design** für alle Geräte
@@ -118,46 +133,69 @@ Wir glauben an nachhaltigen Handel, der nicht nur Profit generiert, sondern auch
 - **Animations & Transitions** für bessere UX
 - **Accessibility-optimiert**
 
+</details>
+
 ## 🛠️ Technologie-Stack
 
-### Frontend
+<details>
+<summary><strong>Frontend</strong></summary>
 
 - **[Next.js 14.2.16](https://nextjs.org/)** - React Framework mit App Router
 - **[React 18](https://reactjs.org/)** - UI Library
 - **[TypeScript](https://www.typescriptlang.org/)** - Typsicherheit
 - **[Tailwind CSS 3.4.17](https://tailwindcss.com/)** - Utility-first CSS Framework
 
-### State Management & Storage
+</details>
+
+<details>
+<summary><strong>State Management & Storage</strong></summary>
 
 - **localStorage** - Client-seitige Datenpersistenz (temporär)
 - **React Context API** - Cart & Wishlist State
 - **Custom Hooks** - useProducts, useCart, useWishlist
 
-### Geplante Backend-Integration
+</details>
+
+<details>
+<summary><strong>Geplante Backend-Integration</strong></summary>
 
 - **[Supabase](https://supabase.com/)** - PostgreSQL Database & Backend (geplant)
 - **[NextAuth.js](https://next-auth.js.org/)** - Authentifizierung & Session Management (geplant)
 - **[Prisma](https://www.prisma.io/)** - ORM für Datenbankzugriff (geplant)
 
-### UI Components
+</details>
+
+<details>
+<summary><strong>UI Components</strong></summary>
 
 - **[shadcn/ui](https://ui.shadcn.com/)** - Moderne React Components
 - **[Lucide React](https://lucide.dev/)** - Icon Library
 - **[Radix UI](https://www.radix-ui.com/)** - Primitive Components
 
-### Styling & Animation
+</details>
+
+<details>
+<summary><strong>Styling & Animation</strong></summary>
 
 - **[Tailwind CSS](https://tailwindcss.com/)** - Responsive Styling
 - **Custom CSS Animations** - Smooth Transitions
 - **Gradient Backgrounds** - Moderne Farbverläufe
 
-### Deployment & Hosting
+</details>
+
+<details>
+<summary><strong>Deployment & Hosting</strong></summary>
 
 - **[Vercel](https://vercel.com/)** - Hosting & Deployment
 - **[GitHub](https://github.com/)** - Version Control
 - **Automatische Deployments** bei Git Push
 
+</details>
+
 ## 🚀 Installation
+
+<details>
+<summary><strong>Voraussetzungen & Lokale Installation</strong></summary>
 
 ### Voraussetzungen
 
@@ -203,7 +241,12 @@ npm run build
 npm run start
 ```
 
+</details>
+
 ## 📁 Projektstruktur
+
+
+<summary><strong> Verzeichnisstruktur </strong></summary>
 
 ```
 mytrueKarma/
@@ -280,7 +323,12 @@ mytrueKarma/
 └── tsconfig.json              # TypeScript Konfiguration
 ```
 
+
+
 ## 📖 Seiten & Funktionalitäten
+
+<details>
+<summary><strong>Alle Seiten & Features anzeigen</strong></summary>
 
 ### 🏠 Homepage (`/`)
 
@@ -367,7 +415,12 @@ mytrueKarma/
 - **Blog** (`/blog`)
 - **Authentication** (`/auth/login`, `/auth/register`)
 
+</details>
+
 ## 🎨 Design System
+
+<details>
+<summary><strong>Farbpalette, Typography & Components</strong></summary>
 
 ### Farbpalette
 
@@ -396,7 +449,12 @@ mytrueKarma/
 - **Breakpoints:** sm, md, lg, xl für verschiedene Geräte
 - **Grid Layouts:** Flexible grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 
+</details>
+
 ## 🚀 Deployment
+
+<details>
+<summary><strong>Deployment Details</strong></summary>
 
 Die Anwendung ist automatisch über Vercel deployed:
 
@@ -417,6 +475,8 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 - **Static Generation** wo möglich
 - **CDN Delivery** über Vercel
 
+</details>
+
 ## 🗺️ Roadmap
 
 ### Phase 1 - Foundation ✅ (Abgeschlossen)
@@ -433,7 +493,8 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 - [x] **localStorage-basierte** Datenpersistenz
 - [x] **Debug-Tools** für Troubleshooting
 
-### Phase 2 - Backend & Authentication (In Arbeit) 🚀
+<details>
+<summary><strong>Phase 2 - Backend & Authentication (In Arbeit) 🚀</strong></summary>
 
 - [x] **Supabase Packages installiert**
   - [x] @supabase/supabase-js
@@ -473,7 +534,10 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
   - [ ] Storage für Bilder
   - [ ] Live Updates
 
-### Phase 3 - Payment & Communication (Geplant)
+</details>
+
+<details>
+<summary><strong>Phase 3 - Payment & Communication (Geplant)</strong></summary>
 
 - [ ] **Payment Integration** (Stripe/PayPal)
 - [ ] **Real-time Chat** Features
@@ -481,7 +545,10 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 - [ ] **SMS Benachrichtigungen**
 - [ ] **Bewertungssystem** mit Persistenz
 
-### Phase 4 - Advanced Features (Zukunft)
+</details>
+
+<details>
+<summary><strong>Phase 4 - Advanced Features (Zukunft)</strong></summary>
 
 - [ ] **AI-powered Recommendations**
 - [ ] **Advanced Analytics Dashboard**
@@ -489,18 +556,24 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 - [ ] **Mobile App** (React Native)
 - [ ] **API für Third-party Integration**
 
-### Phase 5 - Scale (Vision)
+</details>
+
+<details>
+<summary><strong>Phase 5 - Scale (Vision)</strong></summary>
 
 - [ ] **Marketplace für digitale Kunst**
 - [ ] **NFT Integration**
 - [ ] **Augmented Reality** Product Views
 - [ ] **Blockchain-based Transparency**
 
+</details>
+
 ---
 
 ## 📝 Aktuelle Entwicklung (Oktober 2025)
 
-### ✅ Kürzlich abgeschlossen
+<details>
+<summary><strong>✅ Kürzlich abgeschlossen</strong></summary>
 
 1. **Dynamisches Produktsystem**
 
@@ -548,6 +621,8 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
    - ✅ TypeScript Types für NextAuth
    - ✅ Komplette Dokumentation (SUPABASE-SCHEMA.md, SUPABASE-SETUP.md, SUPABASE-IMPLEMENTATION.md)
 
+</details>
+
 ### 🔄 Nächste Schritte (Was JETZT zu tun ist)
 
 1. **SQL Schema ausführen** (Priorität: JETZT!) ⏰
@@ -578,6 +653,9 @@ Aktuell keine Environment Variables erforderlich (statische Daten).
 
 ## 🤝 Mitwirken
 
+<details>
+<summary><strong>Contribution Guidelines</strong></summary>
+
 Wir freuen uns über Beiträge zur mytrueKarma Platform!
 
 ### Wie kann man beitragen?
@@ -603,6 +681,8 @@ Wir freuen uns über Beiträge zur mytrueKarma Platform!
 - **Testing** (Unit/Integration Tests)
 - **Documentation** (README/Code Comments)
 
+</details>
+
 ## 📞 Kontakt
 
 ### mytrueKarma Team
@@ -623,11 +703,51 @@ Wir freuen uns über Beiträge zur mytrueKarma Platform!
 
 ## 📄 Lizenz
 
-Dieses Projekt ist unter der MIT Lizenz veröffentlicht. Siehe [LICENSE](LICENSE) für Details.
+<details>
+<summary><strong>Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND)</strong></summary>
+
+### Creative Commons BY-NC-ND 4.0 International
+
+Copyright (c) 2024 mytrueKarma
+
+Dieses Werk ist lizenziert unter einer Creative Commons Namensnennung - Nicht-kommerziell - Keine Bearbeitungen 4.0 International Lizenz.
+
+#### ✅ Sie dürfen:
+
+**Teilen** — Das Material in jedwedem Format oder Medium vervielfältigen und weiterverbreiten
+
+#### ⚠️ Unter folgenden Bedingungen:
+
+**Namensnennung (BY)** — Sie müssen angemessene Urheber- und Rechteangaben machen, einen Link zur Lizenz beifügen und angeben, ob Änderungen vorgenommen wurden.
+
+**Nicht kommerziell (NC)** — Sie dürfen das Material nicht für kommerzielle Zwecke nutzen.
+
+**Keine Bearbeitungen (ND)** — Wenn Sie das Material remixen, verändern oder anderweitig direkt darauf aufbauen, dürfen Sie die bearbeitete Version des Materials nicht verbreiten.
+
+#### 🚫 Keine zusätzlichen Einschränkungen
+
+Sie dürfen keine zusätzlichen Klauseln oder technische Verfahren einsetzen, die anderen rechtlich irgendetwas untersagen, was die Lizenz erlaubt.
+
+#### 📋 Hinweise:
+
+Sie müssen sich nicht an diese Lizenz halten hinsichtlich solcher Teile des Materials, die gemeinfrei sind, oder soweit Ihre Nutzungshandlungen durch Ausnahmen und Schranken des Urheberrechts gedeckt sind.
+
+Es werden keine Garantien gegeben und auch keine Gewähr geleistet. Die Lizenz verschafft Ihnen möglicherweise nicht alle Erlaubnisse, die Sie für die jeweilige Nutzung brauchen. Es können beispielsweise andere Rechte wie Persönlichkeits- und Datenschutzrechte zu beachten sein, die Ihre Nutzung des Materials entsprechend beschränken.
+
+---
+
+**Vollständiger Lizenztext:** https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+
+**Lizenz-Zusammenfassung:** https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de
+
+</details>
 
 ---
 
 ## 🙏 Danksagungen
+
+<details>
+<summary><strong>Credits & Community</strong></summary>
 
 ### Verwendete Technologien
 
@@ -644,6 +764,8 @@ Dieses Projekt ist unter der MIT Lizenz veröffentlicht. Siehe [LICENSE](LICENSE
 ### Community
 
 Danke an alle, die zur Entwicklung und dem Wachstum der mytrueKarma Platform beitragen!
+
+</details>
 
 ---
 
