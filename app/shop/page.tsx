@@ -50,6 +50,11 @@ import {
   User,
   Tag,
   CheckCircle,
+  Plane,
+  Hotel as HotelIcon,
+  UtensilsCrossed,
+  Car,
+  Palmtree,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -66,6 +71,7 @@ const categories = [
   "Möbel",
   "Sport",
   "Exklusiv",
+  "Travel",
   "Immobilien",
   "Events",
   "Services",
@@ -83,6 +89,7 @@ export default function ProductsPage() {
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [selectedProperty, setSelectedProperty] = useState<any>(null);
   const [selectedService, setSelectedService] = useState<any>(null);
+  const [selectedTravel, setSelectedTravel] = useState<any>(null);
 
   const filteredProducts = allProducts.filter((product) => {
     const matchesSearch = product.name
@@ -301,6 +308,8 @@ export default function ProductsPage() {
                     setSelectedProperty(product);
                   } else if (product.type === "service") {
                     setSelectedService(product);
+                  } else if (product.category === "Travel") {
+                    setSelectedTravel(product);
                   }
                 }}
               >
@@ -330,6 +339,17 @@ export default function ProductsPage() {
                       {product.type === "immobilie" && (
                         <Badge className="absolute top-2 left-2 bg-blue-600">
                           Immobilie
+                        </Badge>
+                      )}
+                      {product.category === "Travel" && (
+                        <Badge className="absolute top-2 left-2 bg-cyan-600">
+                          <Plane className="h-3 w-3 mr-1" />
+                          Reise
+                        </Badge>
+                      )}
+                      {product.discount && product.discount > 0 && (
+                        <Badge className="absolute top-2 right-12 bg-red-500">
+                          -{product.discount}%
                         </Badge>
                       )}
                       <Button
@@ -395,6 +415,8 @@ export default function ProductsPage() {
                         ? "Anfrage stellen"
                         : product.type === "service"
                         ? "Service buchen"
+                        : product.category === "Travel"
+                        ? "Jetzt buchen"
                         : product.inStock
                         ? "In den Warenkorb"
                         : "Nicht verfügbar"}
@@ -821,6 +843,209 @@ export default function ProductsPage() {
                     <ShoppingCart className="h-4 w-4 mr-2" />
                     Service buchen
                   </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Travel Dialog */}
+      <Dialog
+        open={!!selectedTravel}
+        onOpenChange={() => setSelectedTravel(null)}
+      >
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          {selectedTravel && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl flex items-center gap-2">
+                  <Plane className="h-6 w-6 text-cyan-600" />
+                  {selectedTravel.destination}
+                </DialogTitle>
+                <DialogDescription>{selectedTravel.hotel}</DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <div className="relative h-80 w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedTravel.image}
+                    alt={selectedTravel.destination}
+                    fill
+                    className="object-cover"
+                  />
+                  {selectedTravel.discount && (
+                    <div className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-lg">
+                      -{selectedTravel.discount}%
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-cyan-600">
+                    {selectedTravel.travelType}
+                  </Badge>
+                  <Badge variant="secondary">
+                    {selectedTravel.nights} Nächte
+                  </Badge>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-cyan-600" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Reiseziel</p>
+                      <p className="font-medium text-sm">
+                        {selectedTravel.location}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <HotelIcon className="h-5 w-5 text-cyan-600" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Hotel</p>
+                      <p className="font-medium text-sm">
+                        {selectedTravel.hotel}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-cyan-600" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Dauer</p>
+                      <p className="font-medium text-sm">
+                        {selectedTravel.nights} Nächte
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Bewertung</p>
+                      <p className="font-medium text-sm">
+                        {selectedTravel.rating} ({selectedTravel.reviews})
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-2">Beschreibung</h3>
+                  <p className="text-muted-foreground">
+                    {selectedTravel.description}
+                  </p>
+                </div>
+
+                {selectedTravel.included &&
+                  selectedTravel.included.length > 0 && (
+                    <div>
+                      <h3 className="font-semibold mb-3 flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        Im Preis enthalten
+                      </h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        {selectedTravel.included.map((item: string) => (
+                          <div
+                            key={item}
+                            className="flex items-center gap-2 bg-green-50 dark:bg-green-950 p-2 rounded-lg"
+                          >
+                            {item === "Flug" && (
+                              <Plane className="h-4 w-4 text-green-600" />
+                            )}
+                            {item === "Hotel" && (
+                              <HotelIcon className="h-4 w-4 text-green-600" />
+                            )}
+                            {(item === "Frühstück" ||
+                              item === "Halbpension" ||
+                              item === "Vollpension" ||
+                              item === "All Inclusive") && (
+                              <UtensilsCrossed className="h-4 w-4 text-green-600" />
+                            )}
+                            {item === "Transfer" && (
+                              <Car className="h-4 w-4 text-green-600" />
+                            )}
+                            {!["Flug", "Hotel", "Transfer"].includes(item) &&
+                              ![
+                                "Frühstück",
+                                "Halbpension",
+                                "Vollpension",
+                                "All Inclusive",
+                              ].includes(item) && (
+                                <CheckCircle className="h-4 w-4 text-green-600" />
+                              )}
+                            <span className="text-sm font-medium">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-950 dark:to-blue-950 p-6 rounded-lg border border-cyan-200 dark:border-cyan-800">
+                  <h3 className="font-semibold mb-3 flex items-center gap-2 text-cyan-700 dark:text-cyan-300">
+                    <HeartHandshake className="h-5 w-5" />
+                    Social Impact - Mit gutem Gewissen reisen
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {selectedTravel.socialImpact}
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-cyan-600 dark:text-cyan-400">
+                    <Palmtree className="h-4 w-4" />
+                    <span>
+                      Bei jeder Buchung unterstützt du soziale und
+                      Umweltprojekte
+                    </span>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6 rounded-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        Preis pro Person
+                      </p>
+                      <div className="flex items-center gap-3">
+                        {selectedTravel.originalPrice >
+                          selectedTravel.price && (
+                          <span className="text-lg text-muted-foreground line-through">
+                            €{selectedTravel.originalPrice}
+                          </span>
+                        )}
+                        <span className="text-3xl font-bold text-cyan-600">
+                          €{selectedTravel.price}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        inkl. aller Gebühren und Steuern
+                      </p>
+                    </div>
+                    {selectedTravel.discount && (
+                      <div className="text-right">
+                        <p className="text-sm text-green-600 font-semibold">
+                          Sie sparen
+                        </p>
+                        <p className="text-2xl font-bold text-green-600">
+                          €{selectedTravel.originalPrice - selectedTravel.price}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <Button
+                    className="w-full h-14 text-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(e, selectedTravel);
+                      setSelectedTravel(null);
+                    }}
+                  >
+                    <ShoppingCart className="h-5 w-5 mr-2" />
+                    Jetzt buchen
+                  </Button>
+                  <p className="text-xs text-center text-muted-foreground mt-2">
+                    Kostenlose Stornierung bis 14 Tage vor Reiseantritt
+                  </p>
                 </div>
               </div>
             </>

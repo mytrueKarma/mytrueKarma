@@ -40,6 +40,14 @@ export interface Product {
   hourlyRate?: boolean;
   availability?: string;
   verified?: boolean;
+
+  // Travel-spezifische Felder
+  destination?: string;
+  hotel?: string;
+  nights?: number;
+  included?: string[];
+  discount?: number;
+  travelType?: string;
 }
 
 // Default Produkte (aus der aktuellen shop/page.tsx)
@@ -516,6 +524,203 @@ const defaultProducts: Product[] = [
     tags: ["CSR", "Nachhaltigkeit", "Strategie"],
     verified: true,
     socialImpact: "15% für Klimaschutz",
+  },
+  // Travel Deals
+  {
+    id: 401,
+    name: "Santorini, Griechenland - 5★ Luxury Resort",
+    price: 649,
+    originalPrice: 899,
+    rating: 4.9,
+    reviews: 342,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Santorini, Griechenland",
+    hotel: "5★ Luxury Resort & Spa",
+    nights: 7,
+    included: ["Flug", "Hotel", "Frühstück", "Transfer"],
+    discount: 28,
+    travelType: "Strandurlaub",
+    description:
+      "Erleben Sie die atemberaubende Schönheit Santorinis in unserem exklusiven 5-Sterne Resort mit privatem Strand, Infinity-Pool und weltklasse Spa. Genießen Sie spektakuläre Sonnenuntergänge, erkunden Sie malerische Dörfer und tauchen Sie ein in die griechische Kultur.",
+    location: "Santorini, Griechenland",
+    socialImpact:
+      "15% der Buchungsgebühr unterstützen lokale Umweltschutzprojekte und nachhaltige Tourismusinitiativen auf den griechischen Inseln.",
+  },
+  {
+    id: 402,
+    name: "Marrakesch, Marokko - 4★ Boutique Riad",
+    price: 449,
+    originalPrice: 699,
+    rating: 4.7,
+    reviews: 256,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Marrakesch, Marokko",
+    hotel: "4★ Boutique Riad",
+    nights: 5,
+    included: ["Flug", "Hotel", "Halbpension"],
+    discount: 36,
+    travelType: "Städtereise",
+    description:
+      "Tauchen Sie ein in die exotische Welt Marrakeschs! Übernachten Sie in einem traditionellen Riad mitten in der Medina, erkunden Sie bunte Souks, besuchen Sie historische Paläste und genießen Sie die marokkanische Küche.",
+    location: "Marrakesch, Marokko",
+    socialImpact:
+      "20% fließen in Bildungsprojekte für benachteiligte Kinder in Marrakesch und fördern lokales Kunsthandwerk.",
+  },
+  {
+    id: 403,
+    name: "Phuket, Thailand - 5★ Beach Resort",
+    price: 899,
+    originalPrice: 1299,
+    rating: 4.8,
+    reviews: 418,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Phuket, Thailand",
+    hotel: "5★ Beach Resort",
+    nights: 10,
+    included: ["Flug", "Hotel", "All Inclusive", "Transfer"],
+    discount: 31,
+    travelType: "Strandurlaub",
+    description:
+      "Paradiesischer Strandurlaub in Phuket! Genießen Sie weißen Sand, türkisfarbenes Wasser und exzellenten Service. All Inclusive Paket mit internationaler und thailändischer Küche, Wassersport und Wellness-Angeboten.",
+    location: "Phuket, Thailand",
+    socialImpact:
+      "10% unterstützen Meeresschutzprojekte und nachhaltige Fischerei-Initiativen in Thailand.",
+  },
+  {
+    id: 404,
+    name: "Island - Abenteuer & Nordlichter",
+    price: 1199,
+    originalPrice: 1599,
+    rating: 5.0,
+    reviews: 189,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Reykjavik, Island",
+    hotel: "4★ Boutique Hotel",
+    nights: 6,
+    included: ["Flug", "Hotel", "Frühstück", "Nordlichter-Tour", "Mietwagen"],
+    discount: 25,
+    travelType: "Abenteuer",
+    description:
+      "Erleben Sie die raue Schönheit Islands! Bestaunen Sie Nordlichter, entspannen Sie in heißen Quellen, erkunden Sie Wasserfälle und Gletscher. Inklusive geführter Nordlichter-Tour und Mietwagen für individuelle Entdeckungen.",
+    location: "Reykjavik, Island",
+    socialImpact:
+      "12% für Klimaschutzprojekte und Erhaltung der einzigartigen isländischen Natur.",
+  },
+  {
+    id: 405,
+    name: "New York City - Metropolen-Erlebnis",
+    price: 899,
+    originalPrice: 1199,
+    rating: 4.9,
+    reviews: 523,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "New York City, USA",
+    hotel: "4★ Manhattan Hotel",
+    nights: 5,
+    included: ["Flug", "Hotel", "City Pass", "Transfer"],
+    discount: 25,
+    travelType: "Städtereise",
+    description:
+      "Die Stadt, die niemals schläft! Erleben Sie NYC mit allen Highlights: Freiheitsstatue, Times Square, Central Park, Broadway Shows. Inklusive City Pass für über 100 Attraktionen.",
+    location: "New York City, USA",
+    socialImpact:
+      "8% unterstützen soziale Programme für obdachlose Menschen in New York.",
+  },
+  {
+    id: 406,
+    name: "Bali, Indonesien - Wellness & Yoga Retreat",
+    price: 799,
+    originalPrice: 1099,
+    rating: 4.8,
+    reviews: 267,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Ubud, Bali",
+    hotel: "5★ Yoga Resort",
+    nights: 8,
+    included: [
+      "Flug",
+      "Hotel",
+      "Vollpension",
+      "Yoga-Kurse",
+      "Spa-Behandlungen",
+    ],
+    discount: 27,
+    travelType: "Wellness",
+    description:
+      "Finden Sie innere Ruhe in Bali! Tägliche Yoga-Sessions, gesunde balinesische Küche, Spa-Behandlungen und Meditation inmitten tropischer Natur. Perfekt für Körper, Geist und Seele.",
+    location: "Ubud, Bali",
+    socialImpact:
+      "18% fördern lokale Gemeinden und nachhaltige Landwirtschaft auf Bali.",
+  },
+  {
+    id: 407,
+    name: "Kreuzfahrt Mittelmeer - 8 Länder",
+    price: 1299,
+    originalPrice: 1799,
+    rating: 4.7,
+    reviews: 412,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Mittelmeer Kreuzfahrt",
+    hotel: "5★ Kreuzfahrtschiff",
+    nights: 12,
+    included: ["Vollpension", "Entertainment", "Landausflüge", "All Inclusive"],
+    discount: 28,
+    travelType: "Kreuzfahrt",
+    description:
+      "Entdecken Sie 8 Länder in 12 Tagen! Barcelona, Rom, Athen, Istanbul und mehr. Luxuriöses Kreuzfahrtschiff mit Pool, Shows, Restaurants und Wellness-Bereich. Landausflüge inklusive.",
+    location: "Verschiedene Häfen",
+    socialImpact:
+      "5% unterstützen Meeresschutzorganisationen und nachhaltige Tourismusprojekte.",
+  },
+  {
+    id: 408,
+    name: "Dubai - Luxus & Wüstenabenteuer",
+    price: 999,
+    originalPrice: 1399,
+    rating: 4.9,
+    reviews: 345,
+    image: "/placeholder.svg",
+    category: "Travel",
+    inStock: true,
+    type: "product",
+    destination: "Dubai, VAE",
+    hotel: "5★ Luxushotel am Burj Khalifa",
+    nights: 6,
+    included: [
+      "Flug",
+      "Hotel",
+      "Frühstück",
+      "Wüsten-Safari",
+      "Burj Khalifa Ticket",
+    ],
+    discount: 29,
+    travelType: "Luxus",
+    description:
+      "Erleben Sie Dubai's Luxus und Tradition! Übernachten Sie in einem 5-Sterne Hotel mit Blick auf den Burj Khalifa, genießen Sie Shopping-Paradiese und erleben Sie eine authentische Wüsten-Safari mit Kamelritt.",
+    location: "Dubai, VAE",
+    socialImpact:
+      "10% für Bildungsprojekte und Integration von Gastarbeitern in Dubai.",
   },
 ];
 
