@@ -76,14 +76,14 @@ const featuredProducts = [
 ];
 
 const categories = [
-  { name: "Men's Fashion", count: 45, image: "/mens-fashion-social.jpg" },
-  { name: "Women's Fashion", count: 67, image: "/womens-fashion-social.jpg" },
-  { name: "Accessories", count: 23, image: "/accessories-bags-social.jpg" },
-  { name: "Home & Garden", count: 34, image: "/home-garden-social.jpg" },
+  { name: "Dienstleistungen", count: 89, image: "/placeholder.svg" },
+  { name: "Immobilien", count: 34, image: "/placeholder.svg" },
+  { name: "Events", count: 56, image: "/placeholder.svg" },
   { name: "Travel", count: 18, image: "/travel-accessories-social.jpg" },
+  { name: "Home & Garden", count: 42, image: "/home-garden-social.jpg" },
   {
     name: "Exclusive Designs",
-    count: 12,
+    count: 28,
     image: "/exclusive-designs-social.jpg",
   },
 ];
@@ -191,8 +191,6 @@ export default function HomePage() {
         </div>
       </section>
 
-   
-
       {/* Categories Section */}
       <section className="container mx-auto px-4">
         <div
@@ -206,47 +204,60 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((category, index) => (
-            <Link
-              key={category.name}
-              href={`/categories/${category.name
+          {categories.map((category, index) => {
+            // Map category names to correct routes
+            const categoryRoutes: { [key: string]: string } = {
+              Dienstleistungen: "/services",
+              Immobilien: "/immobilien",
+              Events: "/events",
+              Travel: "/categories/travel",
+              "Home & Garden": "/shop?category=home-garden",
+              "Exclusive Designs": "/shop?category=exclusive",
+            };
+
+            const categoryHref =
+              categoryRoutes[category.name] ||
+              `/categories/${category.name
                 .toLowerCase()
-                .replace(/['&\s]+/g, "-")}`}
-            >
-              <Card
-                className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
-                  hoveredCategory === index
-                    ? "shadow-xl ring-2 ring-green-200"
-                    : ""
-                } ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-                onMouseEnter={() => setHoveredCategory(index)}
-                onMouseLeave={() => setHoveredCategory(null)}
-              >
-                <CardContent className="p-4 text-center">
-                  <div className="relative overflow-hidden rounded-lg mb-3">
-                    <Image
-                      src={category.image || "/placeholder.svg"}
-                      alt={category.name}
-                      width={100}
-                      height={100}
-                      className={`mx-auto transition-transform duration-300 ${
-                        hoveredCategory === index ? "scale-110" : "scale-100"
-                      }`}
-                    />
-                  </div>
-                  <h3 className="font-semibold">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {category.count} Artikel
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+                .replace(/['&\s]+/g, "-")}`;
+
+            return (
+              <Link key={category.name} href={categoryHref}>
+                <Card
+                  className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
+                    hoveredCategory === index
+                      ? "shadow-xl ring-2 ring-green-200"
+                      : ""
+                  } ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-10 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  onMouseEnter={() => setHoveredCategory(index)}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                >
+                  <CardContent className="p-4 text-center">
+                    <div className="relative overflow-hidden rounded-lg mb-3">
+                      <Image
+                        src={category.image || "/placeholder.svg"}
+                        alt={category.name}
+                        width={100}
+                        height={100}
+                        className={`mx-auto transition-transform duration-300 ${
+                          hoveredCategory === index ? "scale-110" : "scale-100"
+                        }`}
+                      />
+                    </div>
+                    <h3 className="font-semibold">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {category.count} Artikel
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

@@ -59,21 +59,6 @@ const customerItems = [
     icon: Package,
   },
   {
-    title: "Dienstleistungen",
-    url: "/services",
-    icon: Briefcase,
-  },
-  {
-    title: "Immobilien",
-    url: "/immobilien",
-    icon: Building2,
-  },
-  {
-    title: "Events",
-    url: "/events",
-    icon: Calendar,
-  },
-  {
     title: "Suchen",
     url: "/search",
     icon: Search,
@@ -248,26 +233,18 @@ export function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link
-                  href="/services"
+                  href="/about"
                   className="px-4 py-2 text-sm font-medium hover:text-blue-600 transition-colors"
                 >
-                  Dienstleistungen
+                  Über uns
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link
-                  href="/immobilien"
+                  href="/transparency"
                   className="px-4 py-2 text-sm font-medium hover:text-blue-600 transition-colors"
                 >
-                  Immobilien
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link
-                  href="/seller/register"
-                  className="px-4 py-2 text-sm font-medium hover:text-blue-600 transition-colors"
-                >
-                  Verkäufer werden
+                  Transparenz
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -286,38 +263,23 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
                 <DropdownMenuItem asChild>
-                  <Link href="/about" className="flex items-center gap-2">
-                    <Info className="h-4 w-4" />
-                    Über uns
+                  <Link
+                    href="/seller/register"
+                    className="flex items-center gap-2"
+                  >
+                    <User className="h-4 w-4" />
+                    Mitmachen
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/events" className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    Events & Veranstaltungen
-                  </Link>
-                </DropdownMenuItem>
+                
                 <DropdownMenuItem asChild>
                   <Link href="/talent" className="flex items-center gap-2">
                     <Palette className="h-4 w-4" />
                     Nachwuchsförderung
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/transparency"
-                    className="flex items-center gap-2"
-                  >
-                    <TransparencyIcon className="h-4 w-4" />
-                    Transparenz
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/search" className="flex items-center gap-2">
-                    <Search className="h-4 w-4" />
-                    Suchen
-                  </Link>
-                </DropdownMenuItem>
+                {/* Transparenz jetzt direkt im Header */}
+                
                 <DropdownMenuItem asChild>
                   <Link href="/bildung" className="flex items-center gap-2">
                     <BarChart3 className="h-4 w-4" />
