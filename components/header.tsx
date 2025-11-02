@@ -98,6 +98,11 @@ const customerItems = [
     url: "/transparency",
     icon: TransparencyIcon,
   },
+  {
+    title: "Bildung",
+    url: "/bildung",
+    icon: BarChart3,
+  },
 ];
 
 const userItems = [
@@ -311,6 +316,12 @@ export function Header() {
                   <Link href="/search" className="flex items-center gap-2">
                     <Search className="h-4 w-4" />
                     Suchen
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/bildung" className="flex items-center gap-2">
+                    <BarChart3 className="h-4 w-4" />
+                    Bildung
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
