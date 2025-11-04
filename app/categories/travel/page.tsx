@@ -41,6 +41,13 @@ import {
   HeartHandshake,
   CheckCircle,
   UtensilsCrossed,
+  PawPrint,
+  Dog,
+  Cat,
+  Home,
+  Shield,
+  Clock,
+  Video,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -58,6 +65,26 @@ const travelProducts = [
     rating: 4.6,
     reviews: 78,
     image: "/travel-accessories-social.jpg",
+    inStock: true,
+  },
+  {
+    id: 11,
+    name: "Universal Reiseadapter",
+    price: 24.99,
+    originalPrice: 34.99,
+    rating: 4.8,
+    reviews: 156,
+    image: "/placeholder.svg",
+    inStock: true,
+  },
+  {
+    id: 12,
+    name: "Nackenkissen Memory Foam",
+    price: 19.99,
+    originalPrice: 29.99,
+    rating: 4.7,
+    reviews: 203,
+    image: "/placeholder.svg",
     inStock: true,
   },
 ];
@@ -154,9 +181,88 @@ const travelCategories = [
   },
 ];
 
+const petCareServices = [
+  {
+    id: 1,
+    name: "Hundehotel Premium",
+    subtitle: "5-Sterne Betreuung für Ihren Vierbeiner",
+    price: 45,
+    priceUnit: "pro Tag",
+    rating: 4.9,
+    reviews: 234,
+    image: "/placeholder.svg",
+    features: [
+      "24/7 Betreuung",
+      "Große Auslaufflächen",
+      "Tierarzt vor Ort",
+      "Tägliche Updates",
+    ],
+    type: "Hund",
+    icon: Dog,
+    color: "bg-amber-500",
+    gradient: "from-amber-500/90 to-orange-500/90",
+  },
+  {
+    id: 2,
+    name: "Katzenpension Samtpfote",
+    subtitle: "Geborgenheit für Ihre Katze",
+    price: 35,
+    priceUnit: "pro Tag",
+    rating: 4.8,
+    reviews: 189,
+    image: "/placeholder.svg",
+    features: ["Einzelzimmer", "Katzengarten", "Spielstunden", "Foto-Updates"],
+    type: "Katze",
+    icon: Cat,
+    color: "bg-purple-500",
+    gradient: "from-purple-500/90 to-pink-500/90",
+  },
+  {
+    id: 3,
+    name: "Mobile Tierbetreuung",
+    subtitle: "Betreuung in Ihrem Zuhause",
+    price: 30,
+    priceUnit: "pro Besuch",
+    rating: 4.7,
+    reviews: 156,
+    image: "/placeholder.svg",
+    features: [
+      "2x täglich",
+      "Gassi-Service",
+      "Fütterung",
+      "Pflanzenpflege inkl.",
+    ],
+    type: "Alle Tiere",
+    icon: Home,
+    color: "bg-green-500",
+    gradient: "from-green-500/90 to-emerald-500/90",
+  },
+  {
+    id: 4,
+    name: "Tiersitter-Vermittlung",
+    subtitle: "Vertrauensvolle Betreuung finden",
+    price: 25,
+    priceUnit: "pro Tag",
+    rating: 4.6,
+    reviews: 298,
+    image: "/placeholder.svg",
+    features: [
+      "Geprüfte Sitter",
+      "Versicherung inkl.",
+      "Video-Calls",
+      "Flexible Zeiten",
+    ],
+    type: "Alle Tiere",
+    icon: Shield,
+    color: "bg-blue-500",
+    gradient: "from-blue-500/90 to-cyan-500/90",
+  },
+];
+
 export default function TravelPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTravel, setSelectedTravel] = useState<any>(null);
+  const [selectedPetCare, setSelectedPetCare] = useState<any>(null);
   const { addToCart } = useCart();
   const { toast } = useToast();
   const { products: allProducts } = useProducts();
@@ -496,6 +602,123 @@ export default function TravelPage() {
         </div>
       </section>
 
+      {/* Tierbetreuung während der Reise */}
+      <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-600 px-4 py-2 rounded-full mb-4">
+            <PawPrint className="h-4 w-4" />
+            <span className="text-sm font-medium">Für Tierbesitzer</span>
+          </div>
+          <h2 className="text-4xl font-bold mb-4">
+            Dein Haustier in guten Händen
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Genieße deinen Urlaub sorgenfrei – wir kümmern uns liebevoll um
+            deine Vierbeiner
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {petCareServices.map((service) => (
+            <Card
+              key={service.id}
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer border-0"
+              onClick={() => setSelectedPetCare(service)}
+            >
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.name}
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t ${service.gradient} group-hover:opacity-75 transition-opacity`}
+                ></div>
+
+                <div
+                  className={`absolute top-4 left-4 ${service.color} w-12 h-12 rounded-full flex items-center justify-center shadow-lg`}
+                >
+                  <service.icon className="h-6 w-6 text-white" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <Badge className="mb-2 bg-white/20 backdrop-blur-sm border-0 text-white text-xs">
+                    {service.type}
+                  </Badge>
+                  <h3 className="text-xl font-bold mb-1">{service.name}</h3>
+                  <p className="text-white/90 text-sm mb-2">
+                    {service.subtitle}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm font-semibold">
+                        {service.rating}
+                      </span>
+                      <span className="text-xs text-white/80">
+                        ({service.reviews})
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-lg font-bold">
+                        €{service.price}
+                      </span>
+                      <span className="text-xs block text-white/80">
+                        {service.priceUnit}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <CardContent className="p-5">
+                <div className="space-y-2 mb-4">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <span className="text-muted-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <Button className={`w-full ${service.color} hover:opacity-90`}>
+                  Jetzt anfragen
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Info-Banner */}
+        <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 border-amber-200 dark:border-amber-800">
+          <CardContent className="p-8">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="bg-amber-500 w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
+                <HeartHandshake className="h-8 w-8 text-white" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl font-bold mb-2">
+                  Für den guten Zweck
+                </h3>
+                <p className="text-muted-foreground">
+                  Von jedem Euro, den du für Tierbetreuung ausgibst, geht ein Teil
+                  an Tierschutzprojekte und Tierheime. Gemeinsam machen wir das
+                  Leben von Tieren besser!
+                </p>
+              </div>
+              <div className="flex gap-3 flex-shrink-0">
+                <Button variant="outline" size="lg">
+                  <PawPrint className="h-5 w-5 mr-2" />
+                  Unsere Projekte
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       {/* Reise-Accessoires */}
       <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="text-center mb-12">
@@ -827,6 +1050,147 @@ export default function TravelPage() {
                   </Button>
                   <p className="text-xs text-center text-muted-foreground mt-2">
                     Kostenlose Stornierung bis 14 Tage vor Reiseantritt
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Pet Care Dialog */}
+      <Dialog
+        open={!!selectedPetCare}
+        onOpenChange={() => setSelectedPetCare(null)}
+      >
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          {selectedPetCare && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl flex items-center gap-2">
+                  <selectedPetCare.icon className="h-6 w-6 text-amber-600" />
+                  {selectedPetCare.name}
+                </DialogTitle>
+                <DialogDescription>
+                  {selectedPetCare.subtitle}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <div className="relative h-80 w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedPetCare.image}
+                    alt={selectedPetCare.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${selectedPetCare.gradient} opacity-60`}
+                  ></div>
+                  <div
+                    className={`absolute top-4 left-4 ${selectedPetCare.color} px-4 py-2 rounded-full text-white font-semibold flex items-center gap-2`}
+                  >
+                    <selectedPetCare.icon className="h-5 w-5" />
+                    {selectedPetCare.type}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                    <Clock className="h-8 w-8 text-amber-600" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Preis</p>
+                      <p className="font-bold">
+                        €{selectedPetCare.price} {selectedPetCare.priceUnit}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                    <Star className="h-8 w-8 text-yellow-400 fill-yellow-400" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Bewertung</p>
+                      <p className="font-bold">
+                        {selectedPetCare.rating} ({selectedPetCare.reviews}{" "}
+                        Bewertungen)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div>
+                  <h3 className="font-semibold mb-3 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    Leistungen im Überblick
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {selectedPetCare.features.map(
+                      (feature: string, idx: number) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 bg-green-50 dark:bg-green-950 p-3 rounded-lg"
+                        >
+                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                          <span className="text-sm font-medium">{feature}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 p-6 rounded-lg border border-amber-200 dark:border-amber-800">
+                  <h3 className="font-semibold mb-3 flex items-center gap-2 text-amber-700 dark:text-amber-300">
+                    <PawPrint className="h-5 w-5" />
+                    Social Impact - Gemeinsam für Tiere
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    50% der Einnahmen aus dieser Buchung fließen direkt in
+                    Tierschutzprojekte und lokale Tierheime. Damit hilfst du
+                    nicht nur deinem eigenen Haustier, sondern auch Tieren in
+                    Not.
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-400">
+                    <HeartHandshake className="h-4 w-4" />
+                    <span>Jede Buchung macht einen Unterschied</span>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6 rounded-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        Preis
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-bold text-amber-600">
+                          €{selectedPetCare.price}
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {selectedPetCare.priceUnit}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        inkl. MwSt. und Versicherung
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    className={`w-full h-14 text-lg ${selectedPetCare.color} hover:opacity-90`}
+                    onClick={() => {
+                      toast({
+                        title: "Anfrage gesendet!",
+                        description: `Wir melden uns in Kürze bezüglich ${selectedPetCare.name}.`,
+                      });
+                      setSelectedPetCare(null);
+                    }}
+                  >
+                    <PawPrint className="h-5 w-5 mr-2" />
+                    Jetzt anfragen
+                  </Button>
+                  <p className="text-xs text-center text-muted-foreground mt-2">
+                    Kostenlose Stornierung bis 48 Stunden vor Betreuungsbeginn
                   </p>
                 </div>
               </div>

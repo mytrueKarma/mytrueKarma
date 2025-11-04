@@ -210,3 +210,23 @@
   animation: building-3 3.5s ease-in-out infinite;
   animation-delay: 1s;
 }
+
+
+/* Blinking green border for Transparenz Live-Feed */
+.blinking-green-border {
+  border: 2px solid #22c55e; /* Tailwind green-500 */
+  border-radius: 1rem;
+  animation: blinkGreenBorder 1.2s infinite alternate;
+  box-shadow: 0 0 0 2px #bbf7d0; /* Tailwind green-100 */
+}
+
+@keyframes blinkGreenBorder {
+  from {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px #bbf7d0;
+  }
+  to {
+    border-color: #bbf7d0;
+    box-shadow: 0 0 0 4px #22c55e;
+  }
+}

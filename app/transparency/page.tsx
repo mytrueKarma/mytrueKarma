@@ -48,11 +48,11 @@ const currentProjects = [
     slogan: "You Play, We Plant!",
   },
   {
-    name: "PROJEKT HILFE FÜR UKRAINE",
+    name: "PROJEKT UNICEF hilft Kindern vor Ort",
     description:
-      "UNICEF versorgt geflüchtete Familien in der Ukraine und in den Nachbarländern mit dem Nötigsten.",
+      "Die UNICEF-Teams arbeiten unermüdlich daran, Hilfe für Kinder und Familien zu leisten. UNICEF ist überall dort im Einsatz, wo Kinder in Not sind.",
     details:
-      "Mit Lebensmitteln und Wasser, Hygieneartikeln, wärmender Kleidung und Erste-Hilfe-Sets. Entlang der Fluchtrouten richten wir sichere Anlaufstellen ein.",
+      "Mit Lebensmitteln und Wasser, Hygieneartikeln, wärmender Kleidung und Erste-Hilfe-Sets.",
     icon: Heart,
     color: "text-blue-600",
     bgColor: "bg-blue-50",
@@ -122,6 +122,7 @@ export default function TransparencyPage() {
     details: { productName: string; revenue: number }[];
   }>({ revenue: 0, expenses: 0, details: [] });
   const [now, setNow] = useState<string>("");
+  const [borderFlash, setBorderFlash] = useState(false);
 
   useEffect(() => {
     setNow(formatDateTime(new Date()));
@@ -256,6 +257,32 @@ export default function TransparencyPage() {
         </div>
       </section>
 
+
+      {/* Transparenz Live-Feed */}
+      <section className="container mx-auto px-4 py-12">
+        <div
+          className={`blinking-green-border p-6 mb-8 bg-white/80${
+            borderFlash ? " green-border-flash" : ""
+          }`}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <span className="px-4 py-1 rounded-full bg-green-400 text-gray-900 font-bold text-lg shadow animate-pulse border-2 border-green-500 flex items-center gap-2">
+              Transparenz LIVE-FEED
+            </span>
+            <span className="text-xs font-mono font-semibold text-right text-gray-700 mt-1">
+              Aktualisiert am:
+              <br />
+              {now}
+            </span>
+          </div>
+          <p className="text-base text-gray-600 mb-8 text-center max-w-7xl mx-auto">
+            Entdecke alle Transaktionen, Spenden und den Social Impact von
+            mytrueKarma, transparent und in Echtzeit. (Aktuell noch mit
+            Testdaten)
+          </p>
+          <TransparencyFeed />
+        </div>
+      </section>
       {/* Jahresauswahl & Report */}
       <section className="container mx-auto px-4">
         <div className="text-center mb-8">
@@ -349,22 +376,6 @@ export default function TransparencyPage() {
               </Card>
             )
         )}
-      </section>
-
-      {/* Transparenz Live-Feed */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="flex justify-center mb-4">
-          <span className="px-4 py-1 rounded-full bg-green-400 text-gray-900 font-bold text-lg shadow animate-pulse border-2 border-green-500 flex items-center gap-2">
-            Transparenz LIVE-FEED - Aktualisiert am:
-            <span className="text-xs font-mono font-semibold ml-2">{now}</span>
-          </span>
-        </div>
-        
-        <p className="text-base text-gray-600 mb-8 text-center max-w-7xl mx-auto">
-          Entdecke alle Transaktionen, Spenden und den Social Impact von
-          mytrueKarma, transparent und in Echtzeit. (Aktuell noch mit Testdaten)
-        </p>
-        <TransparencyFeed />
       </section>
 
       {/* Instagram Updates & Blog */}

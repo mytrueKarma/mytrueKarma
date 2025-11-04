@@ -207,12 +207,12 @@ export default function HomePage() {
           {categories.map((category, index) => {
             // Map category names to correct routes
             const categoryRoutes: { [key: string]: string } = {
+              "Exclusive Designs": "/shop?category=exclusive",
               Dienstleistungen: "/services",
               Immobilien: "/immobilien",
               Events: "/events",
               Travel: "/categories/travel",
               "Home & Garden": "/shop?category=home-garden",
-              "Exclusive Designs": "/shop?category=exclusive",
             };
 
             const categoryHref =
@@ -471,11 +471,10 @@ export default function HomePage() {
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20">
                 <div className="flex items-center gap-3 mb-3">
                   <Heart className="h-8 w-8 text-red-300" />
-                  <h3 className="font-bold text-lg">Ukraine Hilfe</h3>
+                  <h3 className="font-bold text-lg">UNICEF hilft Kindern vor Ort</h3>
                 </div>
                 <p className="text-sm opacity-90">
-                  UNICEF-Unterstützung für geflüchtete Familien mit
-                  Lebensmitteln, Wasser und Erste-Hilfe-Sets
+                Die UNICEF-Teams arbeiten unermüdlich daran, Hilfe für Kinder und Familien zu leisten. UNICEF ist überall dort im Einsatz, wo Kinder in Not sind.
                 </p>
               </Card>
             </div>
@@ -526,18 +525,18 @@ export default function HomePage() {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                   Warum gerade mytrueKarma?
                 </h2>
+              <p>
+                Bei <strong>mytrueKarma</strong> fließen <u>50%</u> unserer
+                Erlöse in soziale Projekte, die dazu beitragen, die Welt zu
+                einem besseren Ort zu machen.
+              </p>
               </div>
             </InfoCard3D>
 
             {/* Right Side - Content */}
             <div className="lg:w-1/2 space-y-6 text-lg text-muted-foreground">
               <p>
-                Bei <strong>mytrueKarma</strong> fließen <u>50%</u> unserer
-                Erlöse in soziale Projekte, die dazu beitragen, die Welt zu
-                einem besseren Ort zu machen.
-              </p>
-              <p>
-                Diese Projekte werden aktiv in unserer Community vorgestellt, um
+                Die Projekte werden aktiv in unserer Community vorgestellt, um
                 Transparenz und gemeinsames Engagement zu fördern. Du kannst
                 ganz einfach über unsere Webseite mit einem{" "}
                 <strong>Einkauf</strong> einen Beitrag dazu leisten und somit
@@ -546,8 +545,8 @@ export default function HomePage() {
               </p>
               <p>
                 Um unsere Wertschätzung für <strong>unsere Spender</strong> zum
-                Ausdruck zu bringen, veröffentlichen wir monatlich eine Liste
-                mit den Namen der Unterstützer und ihren Beiträgen, jedoch nur
+                Ausdruck zu bringen, veröffentlichen wir eine Liste im <Link href="/app/transparency">Transparenz Live-Feed </Link>
+                 mit den Namen der Unterstützer und ihren Beiträgen, jedoch nur
                 mit ausdrücklicher Einwilligung der Spender.
               </p>
               <p>
