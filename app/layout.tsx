@@ -9,6 +9,7 @@ import { AuthProvider } from "@/components/auth-provider";
 import { CartProvider } from "@/contexts/cart-context";
 import { WishlistProvider } from "@/contexts/wishlist-context";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
