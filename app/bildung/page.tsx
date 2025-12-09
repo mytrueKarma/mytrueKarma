@@ -123,10 +123,12 @@ export default function BildungPage() {
                   Gemeinsam für eine bessere Zukunft.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-lg">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Wissensvermittlung
-                  </Badge>
+                  <a href="https://testversion-sparte-mytrue-karma.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-lg cursor-pointer hover:bg-white/30 transition">
+                      <BookOpen className="mr-2 h-5 w-5" />
+                      Wissensvermittlung
+                    </Badge>
+                  </a>
                   <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-lg">
                     <Users className="mr-2 h-5 w-5" />
                     Soziales Engagement
