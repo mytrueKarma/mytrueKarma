@@ -94,7 +94,7 @@ const popularDestinations = [
     id: 1,
     name: "Malediven",
     subtitle: "Traumhafte Strände & Luxus",
-    image: "/placeholder.svg",
+    image: "/destination-maldives.jpg",
     price: "ab 899€",
     rating: 4.8,
     deals: 127,
@@ -105,7 +105,7 @@ const popularDestinations = [
     id: 2,
     name: "Paris",
     subtitle: "Stadt der Liebe",
-    image: "/placeholder.svg",
+    image: "/destination-paris.jpg",
     price: "ab 299€",
     rating: 4.7,
     deals: 284,
@@ -116,7 +116,7 @@ const popularDestinations = [
     id: 3,
     name: "Bali",
     subtitle: "Abenteuer & Kultur",
-    image: "/placeholder.svg",
+    image: "/destination-bali.jpg",
     price: "ab 799€",
     rating: 4.9,
     deals: 156,
@@ -127,7 +127,7 @@ const popularDestinations = [
     id: 4,
     name: "Dubai",
     subtitle: "Luxus & Modernität",
-    image: "/placeholder.svg",
+    image: "/destination-dubai.jpg",
     price: "ab 599€",
     rating: 4.6,
     deals: 198,
@@ -190,7 +190,7 @@ const petCareServices = [
     priceUnit: "pro Tag",
     rating: 4.9,
     reviews: 234,
-    image: "/placeholder.svg",
+    image: "/pet-care-dog.jpg",
     features: [
       "24/7 Betreuung",
       "Große Auslaufflächen",
@@ -210,7 +210,7 @@ const petCareServices = [
     priceUnit: "pro Tag",
     rating: 4.8,
     reviews: 189,
-    image: "/placeholder.svg",
+    image: "/pet-care-cat.jpg",
     features: ["Einzelzimmer", "Katzengarten", "Spielstunden", "Foto-Updates"],
     type: "Katze",
     icon: Cat,
@@ -225,7 +225,7 @@ const petCareServices = [
     priceUnit: "pro Besuch",
     rating: 4.7,
     reviews: 156,
-    image: "/placeholder.svg",
+    image: "/pet-care-home.jpg",
     features: [
       "2x täglich",
       "Gassi-Service",
@@ -245,7 +245,7 @@ const petCareServices = [
     priceUnit: "pro Tag",
     rating: 4.6,
     reviews: 298,
-    image: "/placeholder.svg",
+    image: "/pet-care-sitter.jpg",
     features: [
       "Geprüfte Sitter",
       "Versicherung inkl.",
@@ -294,7 +294,7 @@ export default function TravelPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section mit Suchformular */}
       <section className="relative bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/travel-hero-bg.jpg')] bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
         <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
@@ -409,9 +409,11 @@ export default function TravelPage() {
               Die besten Deals für deinen nächsten Traumurlaub
             </p>
           </div>
-          <Button variant="outline">
-            Alle Angebote
-            <ArrowRight className="h-4 w-4 ml-2" />
+          <Button variant="outline" asChild>
+            <a href="#all-deals">
+              Alle Angebote
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </a>
           </Button>
         </div>
 
@@ -602,6 +604,144 @@ export default function TravelPage() {
         </div>
       </section>
 
+      {/* Alle Reise-Deals */}
+      <section
+        id="all-deals"
+        className="container mx-auto px-4 py-16 bg-gradient-to-b from-white to-gray-50"
+      >
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full mb-4">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-medium">Exklusive Angebote</span>
+          </div>
+          <h2 className="text-4xl font-bold mb-4">Alle Reise-Deals</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Entdecke unsere komplette Auswahl an traumhaften Reisezielen mit
+            Social Impact
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {travelDeals.map((deal) => (
+            <Card
+              key={deal.id}
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
+              onClick={() => setSelectedTravel(deal)}
+            >
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={deal.image}
+                  alt={deal.destination || deal.name}
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                {deal.discount && (
+                  <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full font-bold text-sm shadow-lg">
+                    -{deal.discount}%
+                  </div>
+                )}
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Heart className="h-4 w-4" />
+                </Button>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4">
+                  <Badge className="mb-2 bg-white/20 backdrop-blur-sm text-white text-xs">
+                    {deal.travelType}
+                  </Badge>
+                  <h3 className="text-white text-lg font-bold mb-1 line-clamp-1">
+                    {deal.destination}
+                  </h3>
+                  <p className="text-white/90 text-xs line-clamp-1">
+                    {deal.hotel}
+                  </p>
+                </div>
+              </div>
+
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-3 w-3 ${
+                          i < Math.floor(deal.rating)
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-xs font-medium">{deal.rating}</span>
+                  <span className="text-xs text-muted-foreground">
+                    ({deal.reviews})
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {deal.included?.slice(0, 3).map((item) => (
+                    <Badge key={item} variant="secondary" className="text-xs">
+                      {item}
+                    </Badge>
+                  ))}
+                </div>
+
+                {/* Social Impact Mini Badge */}
+                {deal.socialImpact && (
+                  <div className="mb-3 p-2 bg-green-50 border border-green-200 rounded-md">
+                    <div className="flex items-center gap-1 text-xs text-green-700">
+                      <HeartHandshake className="h-3 w-3" />
+                      <span className="font-medium line-clamp-1">
+                        {deal.socialImpact}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between pt-3 border-t">
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      {deal.nights} Nächte
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-bold text-green-600">
+                        €{deal.price}
+                      </span>
+                      <span className="text-xs text-muted-foreground line-through">
+                        €{deal.originalPrice}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700"
+                  >
+                    Buchen
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {travelDeals.length === 0 && (
+          <div className="text-center py-12">
+            <Plane className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+            <h3 className="text-xl font-semibold mb-2">
+              Keine Angebote gefunden
+            </h3>
+            <p className="text-muted-foreground">
+              Aktuell sind keine Reise-Deals verfügbar. Schauen Sie bald wieder
+              vorbei!
+            </p>
+          </div>
+        )}
+      </section>
+
       {/* Tierbetreuung während der Reise */}
       <section className="container mx-auto px-4 py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="text-center mb-12">
@@ -699,13 +839,11 @@ export default function TravelPage() {
                 <HeartHandshake className="h-8 w-8 text-white" />
               </div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold mb-2">
-                  Für den guten Zweck
-                </h3>
+                <h3 className="text-2xl font-bold mb-2">Für den guten Zweck</h3>
                 <p className="text-muted-foreground">
-                  Von jedem Euro, den du für Tierbetreuung ausgibst, geht ein Teil
-                  an Tierschutzprojekte und Tierheime. Gemeinsam machen wir das
-                  Leben von Tieren besser!
+                  Von jedem Euro, den du für Tierbetreuung ausgibst, geht ein
+                  Teil an Tierschutzprojekte und Tierheime. Gemeinsam machen wir
+                  das Leben von Tieren besser!
                 </p>
               </div>
               <div className="flex gap-3 flex-shrink-0">
@@ -717,6 +855,131 @@ export default function TravelPage() {
             </div>
           </CardContent>
         </Card>
+      </section>
+
+      {/* Große Shiny Card - Special Offer */}
+      <section className="container mx-auto px-4 py-16">
+        <Card className="relative overflow-hidden border-0 shadow-2xl bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 text-white">
+          {/* Animated Shine Effect */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_3s_infinite] -skew-x-12"></div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+          <CardContent className="relative z-10 p-12 md:p-16">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Icon Badge */}
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-8 animate-pulse">
+                <Dog className="h-6 w-6 text-yellow-300" />
+                <span className="text-lg font-bold">Neu für Hundebesitzer</span>
+              </div>
+
+              {/* Main Heading */}
+              <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                Entdecke Deutschlands schönste
+                <span className="block text-yellow-300 mt-2">
+                  Aussichtspunkte mit deinem Hund
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="text-xl md:text-2xl opacity-95 mb-8 leading-relaxed max-w-3xl mx-auto">
+                Über{" "}
+                <strong className="text-yellow-300 text-3xl">
+                  320 Aussichtspunkte
+                </strong>{" "}
+                in 16 Bundesländern mit Informationen zu Hundepensionen in der
+                Nähe. Plane den perfekten Ausflug für dich und deinen
+                Vierbeiner!
+              </p>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-3xl mx-auto">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="h-8 w-8 text-yellow-300" />
+                  </div>
+                  <p className="font-bold text-lg mb-2">320+ Aussichtspunkte</p>
+                  <p className="text-sm opacity-90">in ganz Deutschland</p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <PawPrint className="h-8 w-8 text-yellow-300" />
+                  </div>
+                  <p className="font-bold text-lg mb-2">Hundefreundlich</p>
+                  <p className="text-sm opacity-90">geprüfte Wanderwege</p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Home className="h-8 w-8 text-yellow-300" />
+                  </div>
+                  <p className="font-bold text-lg mb-2">Hundepensionen</p>
+                  <p className="text-sm opacity-90">in der Nähe finden</p>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link
+                  href="https://happy-dog-sights-8v5976j6d-miichiiiis-projects.vercel.app/"
+                  passHref
+                >
+                  <Button
+                    size="lg"
+                    className="bg-white text-emerald-600 hover:bg-yellow-300 hover:text-emerald-700 font-bold text-lg h-16 px-10 shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+                  >
+                    <Compass className="h-6 w-6 mr-3 group-hover:rotate-180 transition-transform duration-500" />
+                    Aussichtspunkte entdecken
+                    <ArrowRight className="h-6 w-6 ml-3 group-hover:translate-x-2 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Trust Badge */}
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm opacity-90">
+                <div className="flex items-center gap-2">
+                  <Mountain className="h-5 w-5 text-yellow-300" />
+                  <span>16 Bundesländer</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Dog className="h-5 w-5 text-yellow-300" />
+                  <span>100% hundefreundlich</span>
+                </div>
+              </div>
+
+              {/* Additional Info Banner */}
+              <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <Sparkles className="h-5 w-5 text-yellow-300" />
+                  <p className="font-bold text-lg">Besonderes Feature</p>
+                </div>
+                <p className="text-sm opacity-90 leading-relaxed">
+                  Finde nicht nur die schönsten Aussichtspunkte, sondern auch
+                  hundefreundliche Unterkünfte und Pensionen in der Nähe.
+                  Perfekt für Wochenendausflüge und Urlaubsplanung mit deinem
+                  vierbeinigen Freund!
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Add CSS animation for shimmer effect */}
+        <style jsx global>{`
+          @keyframes shimmer {
+            0% {
+              transform: translateX(-100%) skewX(-12deg);
+            }
+            100% {
+              transform: translateX(200%) skewX(-12deg);
+            }
+          }
+        `}</style>
       </section>
 
       {/* Reise-Accessoires */}

@@ -63,7 +63,7 @@ const properties = [
     size: 145,
     rooms: 4,
     bathrooms: 2,
-    image: "/placeholder.jpg",
+    image: "/property-penthouse.jpg",
     features: [
       "Dachterrasse",
       "Aufzug",
@@ -90,7 +90,7 @@ const properties = [
     size: 180,
     rooms: 5,
     bathrooms: 3,
-    image: "/placeholder.jpg",
+    image: "/property-house.jpg",
     features: ["Garten", "Garage", "Kamin", "Smart Home", "Solarpanels"],
     description:
       "Familienfreundliches Einfamilienhaus mit großzügigem Garten und moderner Ausstattung.",
@@ -112,7 +112,7 @@ const properties = [
     size: 85,
     rooms: 3,
     bathrooms: 1,
-    image: "/placeholder.jpg",
+    image: "/property-apartment.jpg",
     features: ["Balkon", "Einbauküche", "Kellerabteil", "Stellplatz"],
     description:
       "Perfekt für Berufstätige: Helle Wohnung in Top-Lage mit exzellenter Verkehrsanbindung.",
@@ -133,7 +133,7 @@ const properties = [
     size: 320,
     rooms: 7,
     bathrooms: 4,
-    image: "/placeholder.jpg",
+    image: "/property-villa.jpg",
     features: ["Pool", "Sauna", "Weinkeller", "Heimkino", "Doppelgarage"],
     description:
       "Repräsentative Villa in exklusiver Wohnlage mit höchstem Komfort.",
@@ -154,7 +154,7 @@ const properties = [
     size: 62,
     rooms: 2,
     bathrooms: 1,
-    image: "/placeholder.jpg",
+    image: "/property-modern-apartment.jpg",
     features: ["Balkon", "Einbauküche", "Parkett", "Kellerabteil"],
     description:
       "Kompakte Wohnung ideal für Singles oder Paare in beliebtem Stadtteil.",
@@ -175,7 +175,7 @@ const properties = [
     size: 120,
     rooms: 4,
     bathrooms: 2,
-    image: "/placeholder.jpg",
+    image: "/property-maisonette.jpg",
     features: ["2 Ebenen", "Gäste-WC", "Einbauküche", "Tiefgarage", "Balkon"],
     description:
       "Besondere Wohnung über zwei Etagen mit viel Platz und hochwertiger Ausstattung.",

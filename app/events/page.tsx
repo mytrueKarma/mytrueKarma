@@ -115,7 +115,7 @@ const events = [
     price: 45,
     attendees: 2500,
     maxAttendees: 3000,
-    image: "/placeholder.jpg",
+    image: "/event-music-festival.jpg",
     description:
       "Das größte Open-Air Festival des Sommers mit internationalen Künstlern und lokalen Bands.",
     organizer: "mytrueKarma Events",
@@ -134,7 +134,7 @@ const events = [
     price: 25,
     attendees: 15,
     maxAttendees: 20,
-    image: "/placeholder.jpg",
+    image: "/event-art-workshop.jpg",
     description:
       "Lerne von professionellen Street-Art-Künstlern die Grundlagen der urbanen Kunst.",
     organizer: "Art Collective Düsseldorf",
@@ -153,7 +153,7 @@ const events = [
     price: 0,
     attendees: 800,
     maxAttendees: 1500,
-    image: "/placeholder.jpg",
+    image: "/event-food-festival.jpg",
     description:
       "Entdecke die Vielfalt der veganen Küche mit über 40 Food-Ständen und Live-Cooking.",
     organizer: "Green Food Movement",
@@ -172,7 +172,7 @@ const events = [
     price: 30,
     attendees: 450,
     maxAttendees: 500,
-    image: "/placeholder.jpg",
+    image: "/event-marathon.jpg",
     description:
       "Laufe für den guten Zweck! Marathon, Halbmarathon und 5km-Lauf für alle Fitnesslevel.",
     organizer: "Düsseldorf Runners Club",
@@ -191,7 +191,7 @@ const events = [
     price: 89,
     attendees: 35,
     maxAttendees: 50,
-    image: "/placeholder.jpg",
+    image: "/event-workshop.jpg",
     description:
       "Intensive Ganztages-Schulung zu Social Media Marketing und Content Creation.",
     organizer: "Digital Academy",
@@ -210,7 +210,7 @@ const events = [
     price: 12,
     attendees: 200,
     maxAttendees: 300,
-    image: "/placeholder.jpg",
+    image: "/event-cinema.jpg",
     description:
       "Klassische Filme unter freiem Himmel mit Food-Trucks und Bar.",
     organizer: "Cinema Paradiso",
@@ -229,7 +229,7 @@ const events = [
     price: 15,
     attendees: 280,
     maxAttendees: 400,
-    image: "/placeholder.jpg",
+    image: "/event-party.jpg",
     description:
       "Die besten DJs der Stadt battlen um den Titel 'Best Mixer 2025'.",
     organizer: "Nightlife Collective",
@@ -248,7 +248,7 @@ const events = [
     price: 10,
     attendees: 45,
     maxAttendees: 60,
-    image: "/placeholder.jpg",
+    image: "/event-yoga.jpg",
     description: "Entspannende Yoga-Session in der Natur für alle Level.",
     organizer: "Mindful Movement",
     featured: false,

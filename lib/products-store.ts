@@ -533,7 +533,7 @@ const defaultProducts: Product[] = [
     originalPrice: 899,
     rating: 4.9,
     reviews: 342,
-    image: "/placeholder.svg",
+    image: "/travel-santorini.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -556,7 +556,7 @@ const defaultProducts: Product[] = [
     originalPrice: 699,
     rating: 4.7,
     reviews: 256,
-    image: "/placeholder.svg",
+    image: "/travel-marrakech.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -579,7 +579,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1299,
     rating: 4.8,
     reviews: 418,
-    image: "/placeholder.svg",
+    image: "/travel-phuket.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -602,7 +602,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1599,
     rating: 5.0,
     reviews: 189,
-    image: "/placeholder.svg",
+    image: "/travel-iceland.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -625,7 +625,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1199,
     rating: 4.9,
     reviews: 523,
-    image: "/placeholder.svg",
+    image: "/travel-newyork.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -648,7 +648,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1099,
     rating: 4.8,
     reviews: 267,
-    image: "/placeholder.svg",
+    image: "/travel-bali-yoga.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -677,7 +677,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1799,
     rating: 4.7,
     reviews: 412,
-    image: "/placeholder.svg",
+    image: "/travel-cruise.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -700,7 +700,7 @@ const defaultProducts: Product[] = [
     originalPrice: 1399,
     rating: 4.9,
     reviews: 345,
-    image: "/placeholder.svg",
+    image: "/travel-dubai-luxury.jpg",
     category: "Travel",
     inStock: true,
     type: "product",
@@ -726,6 +726,8 @@ const defaultProducts: Product[] = [
 
 // LocalStorage Key
 const STORAGE_KEY = "mytruekarma_products";
+const VERSION_KEY = "mytruekarma_products_version";
+const CURRENT_VERSION = "2.0"; // Erhöhe diese Version, wenn du Produkte aktualisierst
 
 // Helper Funktionen
 export const ProductStore = {
@@ -734,26 +736,49 @@ export const ProductStore = {
     if (typeof window === "undefined") return;
 
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) {
-      // Erste Initialisierung - speichere Default-Produkte
+    const storedVersion = localStorage.getItem(VERSION_KEY);
+
+    // Wenn Version nicht übereinstimmt oder keine Produkte gespeichert sind, neu initialisieren
+    if (!stored || storedVersion !== CURRENT_VERSION) {
+      console.log("Initializing products with new version:", CURRENT_VERSION);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultProducts));
+      localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
     } else {
       // Prüfe ob alle Default-Produkte vorhanden sind
       const existingProducts = JSON.parse(stored);
       const existingIds = existingProducts.map((p: Product) => p.id);
 
-      // Füge fehlende Default-Produkte hinzu
+      // Aktualisiere bestehende Produkte mit neuen Daten (z.B. Bilder)
       let updated = false;
+      const updatedProducts = existingProducts.map(
+        (existingProduct: Product) => {
+          const defaultProduct = defaultProducts.find(
+            (p) => p.id === existingProduct.id
+          );
+          if (defaultProduct) {
+            // Aktualisiere nur wenn sich Bilder geändert haben
+            if (existingProduct.image !== defaultProduct.image) {
+              updated = true;
+              return { ...existingProduct, ...defaultProduct };
+            }
+          }
+          return existingProduct;
+        }
+      );
+
+      // Füge fehlende Default-Produkte hinzu
       defaultProducts.forEach((defaultProduct) => {
         if (!existingIds.includes(defaultProduct.id)) {
-          existingProducts.push(defaultProduct);
+          updatedProducts.push(defaultProduct);
           updated = true;
         }
       });
 
       // Speichere aktualisierte Liste wenn Änderungen vorgenommen wurden
       if (updated) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(existingProducts));
+        console.log("Updated products with new images");
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedProducts));
+        localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
       }
     }
   },

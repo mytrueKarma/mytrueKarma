@@ -76,9 +76,9 @@ const featuredProducts = [
 ];
 
 const categories = [
-  { name: "Dienstleistungen", count: 89, image: "/placeholder.svg" },
-  { name: "Immobilien", count: 34, image: "/placeholder.svg" },
-  { name: "Events", count: 56, image: "/placeholder.svg" },
+  { name: "Dienstleistungen", count: 89, image: "/services-social.jpg" },
+  { name: "Immobilien", count: 34, image: "/immobilien-social.jpg" },
+  { name: "Events", count: 56, image: "/events-social.jpg" },
   { name: "Travel", count: 18, image: "/travel-accessories-social.jpg" },
   { name: "Home & Garden", count: 42, image: "/home-garden-social.jpg" },
   {
@@ -224,7 +224,7 @@ export default function HomePage() {
             return (
               <Link key={category.name} href={categoryHref}>
                 <Card
-                  className={`hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
+                  className={`h-full hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 ${
                     hoveredCategory === index
                       ? "shadow-xl ring-2 ring-green-200"
                       : ""
@@ -237,19 +237,20 @@ export default function HomePage() {
                   onMouseEnter={() => setHoveredCategory(index)}
                   onMouseLeave={() => setHoveredCategory(null)}
                 >
-                  <CardContent className="p-4 text-center">
-                    <div className="relative overflow-hidden rounded-lg mb-3">
+                  <CardContent className="p-4 text-center flex flex-col h-full">
+                    <div className="relative overflow-hidden rounded-lg mb-3 w-full aspect-square">
                       <Image
                         src={category.image || "/placeholder.svg"}
                         alt={category.name}
-                        width={100}
-                        height={100}
-                        className={`mx-auto transition-transform duration-300 ${
+                        fill
+                        className={`object-cover transition-transform duration-300 ${
                           hoveredCategory === index ? "scale-110" : "scale-100"
                         }`}
                       />
                     </div>
-                    <h3 className="font-semibold">{category.name}</h3>
+                    <h3 className="font-semibold text-sm min-h-[2.5rem] flex items-center justify-center">
+                      {category.name}
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       {category.count} Artikel
                     </p>
@@ -471,10 +472,14 @@ export default function HomePage() {
               <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20">
                 <div className="flex items-center gap-3 mb-3">
                   <Heart className="h-8 w-8 text-red-300" />
-                  <h3 className="font-bold text-lg">UNICEF hilft Kindern vor Ort</h3>
+                  <h3 className="font-bold text-lg">
+                    UNICEF hilft Kindern vor Ort
+                  </h3>
                 </div>
                 <p className="text-sm opacity-90">
-                Die UNICEF-Teams arbeiten unermüdlich daran, Hilfe für Kinder und Familien zu leisten. UNICEF ist überall dort im Einsatz, wo Kinder in Not sind.
+                  Die UNICEF-Teams arbeiten unermüdlich daran, Hilfe für Kinder
+                  und Familien zu leisten. UNICEF ist überall dort im Einsatz,
+                  wo Kinder in Not sind.
                 </p>
               </Card>
             </div>
@@ -525,11 +530,11 @@ export default function HomePage() {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                   Warum gerade mytrueKarma?
                 </h2>
-              <p>
-                Bei <strong>mytrueKarma</strong> fließen <u>50%</u> unserer
-                Erlöse in soziale Projekte, die dazu beitragen, die Welt zu
-                einem besseren Ort zu machen.
-              </p>
+                <p>
+                  Bei <strong>mytrueKarma</strong> fließen <u>50%</u> unserer
+                  Erlöse in soziale Projekte, die dazu beitragen, die Welt zu
+                  einem besseren Ort zu machen.
+                </p>
               </div>
             </InfoCard3D>
 
@@ -545,8 +550,9 @@ export default function HomePage() {
               </p>
               <p>
                 Um unsere Wertschätzung für <strong>unsere Spender</strong> zum
-                Ausdruck zu bringen, veröffentlichen wir eine Liste im <Link href="/app/transparency">Transparenz Live-Feed </Link>
-                 mit den Namen der Unterstützer und ihren Beiträgen, jedoch nur
+                Ausdruck zu bringen, veröffentlichen wir eine Liste im{" "}
+                <Link href="/app/transparency">Transparenz Live-Feed </Link>
+                mit den Namen der Unterstützer und ihren Beiträgen, jedoch nur
                 mit ausdrücklicher Einwilligung der Spender.
               </p>
               <p>
