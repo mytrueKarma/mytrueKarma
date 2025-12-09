@@ -76,14 +76,14 @@ const featuredProducts = [
 ];
 
 const categories = [
-  { name: "Dienstleistungen", count: 89, image: "/services-social.jpg" },
-  { name: "Immobilien", count: 34, image: "/immobilien-social.jpg" },
-  { name: "Events", count: 56, image: "/events-social.jpg" },
-  { name: "Travel", count: 18, image: "/travel-accessories-social.jpg" },
-  { name: "Home & Garden", count: 42, image: "/home-garden-social.jpg" },
+  { name: "Dienstleistungen", count: 9, image: "/services-social.jpg" },
+  { name: "Immobilien", count: 8, image: "/immobilien-social.jpg" },
+  { name: "Events", count: 12, image: "/events-social.jpg" },
+  { name: "Travel", count: 17, image: "/travel-accessories-social.jpg" },
+  { name: "Home & Garden", count: 12, image: "/home-garden-social.jpg" },
   {
     name: "Exclusive Designs",
-    count: 28,
+    count: 8,
     image: "/exclusive-designs-social.jpg",
   },
 ];

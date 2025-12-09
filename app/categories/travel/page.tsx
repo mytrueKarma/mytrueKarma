@@ -64,7 +64,7 @@ const travelProducts = [
     originalPrice: 39.99,
     rating: 4.6,
     reviews: 78,
-    image: "/travel-accessories-social.jpg",
+    image: "/accessories-bags-social.jpg",
     inStock: true,
   },
   {
@@ -74,7 +74,7 @@ const travelProducts = [
     originalPrice: 34.99,
     rating: 4.8,
     reviews: 156,
-    image: "/placeholder.svg",
+    image: "/accessories-bags-social.jpg",
     inStock: true,
   },
   {
@@ -84,7 +84,7 @@ const travelProducts = [
     originalPrice: 29.99,
     rating: 4.7,
     reviews: 203,
-    image: "/placeholder.svg",
+    image: "/accessories-bags-social.jpg",
     inStock: true,
   },
 ];
@@ -368,34 +368,42 @@ export default function TravelPage() {
 
           {/* Quick Links */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
-            <Button
-              variant="outline"
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-            >
-              <HotelIcon className="h-4 w-4 mr-2" />
-              Hotels
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-            >
-              <Plane className="h-4 w-4 mr-2" />
-              Flüge
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-            >
-              <Car className="h-4 w-4 mr-2" />
-              Mietwagen
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-            >
-              <Ship className="h-4 w-4 mr-2" />
-              Kreuzfahrten
-            </Button>
+            <Link href="/categories/travel#hotels">
+              <Button
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+              >
+                <HotelIcon className="h-4 w-4 mr-2" />
+                Hotels
+              </Button>
+            </Link>
+            <Link href="/categories/travel#flights">
+              <Button
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+              >
+                <Plane className="h-4 w-4 mr-2" />
+                Flüge
+              </Button>
+            </Link>
+            <Link href="/categories/travel#cars">
+              <Button
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+              >
+                <Car className="h-4 w-4 mr-2" />
+                Mietwagen
+              </Button>
+            </Link>
+            <Link href="/categories/travel#cruises">
+              <Button
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+              >
+                <Ship className="h-4 w-4 mr-2" />
+                Kreuzfahrten
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -847,10 +855,12 @@ export default function TravelPage() {
                 </p>
               </div>
               <div className="flex gap-3 flex-shrink-0">
-                <Button variant="outline" size="lg">
-                  <PawPrint className="h-5 w-5 mr-2" />
-                  Unsere Projekte
-                </Button>
+                <Link href="/transparency">
+                  <Button variant="outline" size="lg">
+                    <PawPrint className="h-5 w-5 mr-2" />
+                    Unsere Projekte
+                  </Button>
+                </Link>
               </div>
             </div>
           </CardContent>
@@ -879,9 +889,9 @@ export default function TravelPage() {
 
               {/* Main Heading */}
               <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                Entdecke Deutschlands schönste
+                Entdecke Deutschlands schönste perfekt für dich
                 <span className="block text-yellow-300 mt-2">
-                  Aussichtspunkte mit deinem Hund
+                  ... und deinen Hund!
                 </span>
               </h2>
 
@@ -925,9 +935,10 @@ export default function TravelPage() {
 
               {/* CTA Button */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  href="https://happy-dog-sights-8v5976j6d-miichiiiis-projects.vercel.app/"
-                  passHref
+                <a
+                  href="https://happy-dog-sights.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Button
                     size="lg"
@@ -937,7 +948,7 @@ export default function TravelPage() {
                     Aussichtspunkte entdecken
                     <ArrowRight className="h-6 w-6 ml-3 group-hover:translate-x-2 transition-transform" />
                   </Button>
-                </Link>
+                </a>
               </div>
 
               {/* Trust Badge */}
@@ -1098,22 +1109,26 @@ export default function TravelPage() {
               nach der anderen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="text-lg h-14 px-8"
-              >
-                <TrendingUp className="h-5 w-5 mr-2" />
-                Unsere Projekte entdecken
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg h-14 px-8 border-white text-white hover:bg-white/20"
-              >
-                Mehr über uns erfahren
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Button>
+              <Link href="/transparency">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="text-lg h-14 px-8"
+                >
+                  <TrendingUp className="h-5 w-5 mr-2" />
+                  Unsere Projekte entdecken
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg h-14 px-8 border-white text-white hover:bg-white/20"
+                >
+                  Mehr über uns erfahren
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

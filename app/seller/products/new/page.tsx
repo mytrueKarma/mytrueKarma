@@ -1,22 +1,28 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "@/components/ui/badge"
-import { Upload, X, ArrowLeft, Save, Eye } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { useAuth } from "@/components/auth-provider"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
+import { Upload, X, ArrowLeft, Save, Eye } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useAuth } from "@/components/auth-provider";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 const categories = [
   "Men's Fashion",
@@ -28,19 +34,19 @@ const categories = [
   "Electronics",
   "Books",
   "Sports & Outdoor",
-]
+];
 
 const conditions = [
   { value: "new", label: "Neu" },
   { value: "like_new", label: "Wie neu" },
   { value: "good", label: "Gut" },
   { value: "fair", label: "Akzeptabel" },
-]
+];
 
 export default function NewProductPage() {
-  const { user } = useAuth()
-  const router = useRouter()
-  const { toast } = useToast()
+  const { user } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -53,86 +59,104 @@ export default function NewProductPage() {
     tags: [] as string[],
     socialImpact: false,
     donationPercentage: "0",
-  })
+  });
 
-  const [images, setImages] = useState<string[]>([])
-  const [currentTag, setCurrentTag] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [images, setImages] = useState<string[]>([]);
+  const [currentTag, setCurrentTag] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Redirect if not logged in
+  // Redirect if not logged in - must be in useEffect
+  useEffect(() => {
+    if (!user) {
+      router.push("/auth/login");
+    } else {
+      setIsLoading(false);
+    }
+  }, [user, router]);
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <p className="text-lg text-muted-foreground">Laden...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!user) {
-    router.push("/auth/login")
-    return <div>Loading...</div>
+    return null;
   }
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
-    }))
-  }
+    }));
+  };
 
   const addTag = () => {
     if (currentTag.trim() && !formData.tags.includes(currentTag.trim())) {
       setFormData((prev) => ({
         ...prev,
         tags: [...prev.tags, currentTag.trim()],
-      }))
-      setCurrentTag("")
+      }));
+      setCurrentTag("");
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
     setFormData((prev) => ({
       ...prev,
       tags: prev.tags.filter((tag) => tag !== tagToRemove),
-    }))
-  }
+    }));
+  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
+    const files = e.target.files;
     if (files) {
       // In a real app, you would upload to a service like Vercel Blob
       Array.from(files).forEach((file) => {
-        const reader = new FileReader()
+        const reader = new FileReader();
         reader.onload = (e) => {
           if (e.target?.result) {
-            setImages((prev) => [...prev, e.target!.result as string])
+            setImages((prev) => [...prev, e.target!.result as string]);
           }
-        }
-        reader.readAsDataURL(file)
-      })
+        };
+        reader.readAsDataURL(file);
+      });
     }
-  }
+  };
 
   const removeImage = (indexToRemove: number) => {
-    setImages((prev) => prev.filter((_, index) => index !== indexToRemove))
-  }
+    setImages((prev) => prev.filter((_, index) => index !== indexToRemove));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       // Mock API call - replace with actual API
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       toast({
         title: "Produkt erfolgreich erstellt!",
         description: "Ihr Produkt wurde zur Überprüfung eingereicht.",
-      })
+      });
 
-      router.push("/seller/dashboard")
+      router.push("/seller/dashboard");
     } catch (error) {
       toast({
         title: "Fehler",
         description: "Beim Erstellen des Produkts ist ein Fehler aufgetreten.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -146,7 +170,9 @@ export default function NewProductPage() {
         </Button>
         <div>
           <h1 className="text-3xl font-bold">Neues Produkt hinzufügen</h1>
-          <p className="text-muted-foreground">Erstellen Sie ein neues Produktangebot für Ihren Shop</p>
+          <p className="text-muted-foreground">
+            Erstellen Sie ein neues Produktangebot für Ihren Shop
+          </p>
         </div>
       </div>
 
@@ -185,7 +211,9 @@ export default function NewProductPage() {
               <Textarea
                 id="description"
                 value={formData.description}
-                onChange={(e) => handleInputChange("description", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
                 placeholder="Beschreiben Sie Ihr Produkt detailliert..."
                 rows={4}
                 required
@@ -222,7 +250,12 @@ export default function NewProductPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="condition">Zustand *</Label>
-                <Select value={formData.condition} onValueChange={(value) => handleInputChange("condition", value)}>
+                <Select
+                  value={formData.condition}
+                  onValueChange={(value) =>
+                    handleInputChange("condition", value)
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Zustand wählen" />
                   </SelectTrigger>
@@ -239,7 +272,10 @@ export default function NewProductPage() {
 
             <div className="space-y-2">
               <Label htmlFor="category">Kategorie *</Label>
-              <Select value={formData.category} onValueChange={(value) => handleInputChange("category", value)}>
+              <Select
+                value={formData.category}
+                onValueChange={(value) => handleInputChange("category", value)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Kategorie wählen" />
                 </SelectTrigger>
@@ -264,7 +300,10 @@ export default function NewProductPage() {
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
               <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
               <div className="space-y-2">
-                <Label htmlFor="images" className="cursor-pointer text-blue-600 hover:text-blue-700">
+                <Label
+                  htmlFor="images"
+                  className="cursor-pointer text-blue-600 hover:text-blue-700"
+                >
                   Bilder hochladen
                 </Label>
                 <Input
@@ -319,7 +358,9 @@ export default function NewProductPage() {
                 value={currentTag}
                 onChange={(e) => setCurrentTag(e.target.value)}
                 placeholder="Tag hinzufügen..."
-                onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                onKeyPress={(e) =>
+                  e.key === "Enter" && (e.preventDefault(), addTag())
+                }
               />
               <Button type="button" onClick={addTag} variant="outline">
                 Hinzufügen
@@ -329,9 +370,16 @@ export default function NewProductPage() {
             {formData.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {formData.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="flex items-center gap-1">
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="flex items-center gap-1"
+                  >
                     {tag}
-                    <X className="h-3 w-3 cursor-pointer hover:text-red-600" onClick={() => removeTag(tag)} />
+                    <X
+                      className="h-3 w-3 cursor-pointer hover:text-red-600"
+                      onClick={() => removeTag(tag)}
+                    />
                   </Badge>
                 ))}
               </div>
@@ -349,25 +397,34 @@ export default function NewProductPage() {
               <Checkbox
                 id="socialImpact"
                 checked={formData.socialImpact}
-                onCheckedChange={(checked) => handleInputChange("socialImpact", checked as boolean)}
+                onCheckedChange={(checked) =>
+                  handleInputChange("socialImpact", checked as boolean)
+                }
               />
-              <Label htmlFor="socialImpact">Dieses Produkt unterstützt soziale Projekte</Label>
+              <Label htmlFor="socialImpact">
+                Dieses Produkt unterstützt soziale Projekte
+              </Label>
             </div>
 
             {formData.socialImpact && (
               <div className="space-y-2">
-                <Label htmlFor="donationPercentage">Spendenprozentsatz (%)</Label>
+                <Label htmlFor="donationPercentage">
+                  Spendenprozentsatz (%)
+                </Label>
                 <Input
                   id="donationPercentage"
                   type="number"
                   min="0"
                   max="100"
                   value={formData.donationPercentage}
-                  onChange={(e) => handleInputChange("donationPercentage", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("donationPercentage", e.target.value)
+                  }
                   placeholder="10"
                 />
                 <p className="text-sm text-muted-foreground">
-                  Prozentsatz des Verkaufspreises, der an soziale Projekte gespendet wird
+                  Prozentsatz des Verkaufspreises, der an soziale Projekte
+                  gespendet wird
                 </p>
               </div>
             )}
@@ -380,12 +437,16 @@ export default function NewProductPage() {
             <Eye className="h-4 w-4 mr-2" />
             Vorschau
           </Button>
-          <Button type="submit" disabled={isSubmitting} className="bg-green-600 hover:bg-green-700">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="bg-green-600 hover:bg-green-700"
+          >
             <Save className="h-4 w-4 mr-2" />
             {isSubmitting ? "Wird gespeichert..." : "Produkt erstellen"}
           </Button>
         </div>
       </form>
     </div>
-  )
+  );
 }

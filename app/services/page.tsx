@@ -44,7 +44,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/cart-context";
 import { useWishlist } from "@/contexts/wishlist-context";
 import { useProducts } from "@/hooks/use-products";
-import AnimatedParticles from "@/components/animated-particles";
 
 const categories = [
   "Alle",
@@ -148,12 +147,20 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <AnimatedParticles />
-
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/services-social.jpg"
+            alt="Services - Menschen helfen Menschen"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-purple-600/80" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto text-center text-white">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Services & Jobs
           </h1>
@@ -250,13 +257,22 @@ export default function ServicesPage() {
                           {service.name}
                         </CardTitle>
                         <div className="flex items-center gap-2 mt-2">
-                          <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                            <Image
-                              src={service.image}
-                              alt={service.provider || "Provider"}
-                              fill
-                              className="object-cover"
-                            />
+                          <div className="relative w-8 h-8 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-500">
+                            {service.image &&
+                            service.image !== "/placeholder.svg" ? (
+                              <Image
+                                src={service.image}
+                                alt={service.provider || "Provider"}
+                                fill
+                                className="object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-white text-xs font-bold">
+                                {(service.provider || "?")
+                                  .charAt(0)
+                                  .toUpperCase()}
+                              </div>
+                            )}
                           </div>
                           <div className="text-sm">
                             <p className="font-medium">{service.provider}</p>
@@ -323,11 +339,11 @@ export default function ServicesPage() {
                         <div className="flex items-center">
                           <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                           <span className="ml-1 text-sm font-medium">
-                            {service.rating}
+                            {service.rating || "5.0"}
                           </span>
                         </div>
                         <span className="text-sm text-muted-foreground">
-                          ({service.reviews} Bewertungen)
+                          ({service.reviews || 0} Bewertungen)
                         </span>
                       </div>
 
@@ -380,12 +396,22 @@ export default function ServicesPage() {
                         {selectedService && (
                           <div className="space-y-4">
                             <div className="relative w-full h-48 rounded-lg overflow-hidden">
-                              <Image
-                                src={selectedService.image}
-                                alt={selectedService.name}
-                                fill
-                                className="object-cover"
-                              />
+                              {selectedService.image &&
+                              selectedService.image !== "/placeholder.svg" ? (
+                                <Image
+                                  src={selectedService.image}
+                                  alt={selectedService.name}
+                                  fill
+                                  className="object-cover"
+                                />
+                              ) : (
+                                <Image
+                                  src="/services-social.jpg"
+                                  alt={selectedService.name}
+                                  fill
+                                  className="object-cover"
+                                />
+                              )}
                             </div>
 
                             <div className="flex items-center gap-4">
@@ -437,10 +463,10 @@ export default function ServicesPage() {
                             <div className="flex items-center gap-2">
                               <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                               <span className="font-medium">
-                                {selectedService.rating}
+                                {selectedService.rating || "5.0"}
                               </span>
                               <span className="text-muted-foreground">
-                                ({selectedService.reviews} Bewertungen)
+                                ({selectedService.reviews || 0} Bewertungen)
                               </span>
                             </div>
 
