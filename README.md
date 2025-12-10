@@ -4,7 +4,7 @@
 
 **мүтʀueᴋaʀᴍa EST. 2021** - Eine innovative Social Commerce Platform für nachhaltigen und transparenten Handel mit Fokus auf soziale Projekte und Künstlerförderung.
 
-🌐 **Live Demo:** [https://mytruekarma.vercel.app](https://mytruekarma.vercel.app) - [https://mytrue-karma.vercel.app]
+🌐 **Live Demo:** [https://vercel.mytruekarma.com](https://vercel.mytruekarma.com)
 
 ## 📋 Inhaltsverzeichnis
 
